@@ -1,13 +1,49 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package unisa.ingsoft.DataStructures;
 
-/**
- *
- * @author andre
- */
-public class CustomStack {
+import unisa.ingsoft.Exceptions.LessThanOneElementException;
+import unisa.ingsoft.Exceptions.LessThanTwoElementsException;
+
+import java.util.Stack;
+
+public class CustomStack<E> extends Stack<E> implements StackOperations{ 
+
+    public CustomStack() {
+        super();
+    }
     
+    @Override
+    public void clear(){  
+        int n=size();
+        for(int i=0; i<n;i++)
+            drop();
+    }
+    public void drop(){
+       if(size()>=1)
+                pop();
+    } 
+    public void swap() throws LessThanTwoElementsException{
+        if(size()<2)
+            throw new LessThanTwoElementsException();
+        
+        E z=pop();
+        E w=pop();
+        push(z);
+        push(w);
+    }
+    public void dup() throws LessThanOneElementException{
+        if(size()<1)
+            throw new LessThanOneElementException();
+        
+        E z=peek();
+        push(z);
+    }
+    public void over() throws LessThanTwoElementsException{
+        if(size()<2)
+            throw new LessThanTwoElementsException();
+        
+        E z=pop();
+        E w=peek();
+        push(z);
+        push(w);
+    }
 }
