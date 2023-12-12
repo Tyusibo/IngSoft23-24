@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package unisa.ingsoft.DataStructures;
 
-/**
- *
- * @author andre
- */
-public interface VariablesOperations {
-    
+import unisa.ingsoft.Exceptions.VariableNotInitializedException;
+
+public interface VariablesOperations<T>{
+    public T get(Character c) throws VariableNotInitializedException;
+    public T put(Character c, T t);
+    public T increase(Character c, T t) throws VariableNotInitializedException;
+    public T decrease(Character c, T t) throws VariableNotInitializedException;
 }

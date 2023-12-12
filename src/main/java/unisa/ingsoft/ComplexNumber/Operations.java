@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package unisa.ingsoft.ComplexNumber;
 
-/**
- *
- * @author andre
- */
-public interface Operations {
-    
+public interface Operations<T> {
+    public T sum(T t);
+    public T sub(T t);
+    public T mol(T t);
+    public T div(T t);
+    public T sqrt();
+    public T inv();
+    public T conj();
 }
