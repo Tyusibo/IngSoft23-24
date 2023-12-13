@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import unisa.ingsoft.ComplexNumber.ComplexNumber;
 import unisa.ingsoft.DataStructures.CustomStack;
 import unisa.ingsoft.DataStructures.Variables;
+import unisa.ingsoft.Exceptions.LessThanTwoElementsException;
+import unisa.ingsoft.Exceptions.LessThanOneElementException;
 import unisa.ingsoft.Exceptions.SyntaxException;
 
 public class CalculatorTest {
@@ -31,15 +33,27 @@ public class CalculatorTest {
     /**
      * Test of stackToArray method, of class Calculator.
      */
-    @Test
+    @Test  //caso generale
     public void testStackToArray() throws SyntaxException {
         Calculator instance = new Calculator();
-        instance.insert("4+3j");instance.insert("4+3j");instance.insert("4+3j");
+        instance.insert("4+3j");
+        instance.insert("-5+8j");
+        instance.insert("0");
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(3,result.length);
-        for(int i=0;i<result.length;i++){
-            System.out.println(result[i]);
-        }
+        assertEquals(4,result[0].getRe());
+        assertEquals(3,result[0].getIm());
+        assertEquals(-5,result[1].getRe());
+        assertEquals(8,result[1].getIm());
+        assertEquals(0,result[2].getRe());
+        assertEquals(0,result[2].getIm());
+    }
+    
+    @Test  //caso stack vuoto
+    public void testStackToArray2(){
+        Calculator instance = new Calculator();
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(0,result.length);
     }
     
     /**
@@ -48,116 +62,216 @@ public class CalculatorTest {
     @Test  //caso generale
     public void testInsert() throws SyntaxException{
         Calculator instance = new Calculator();
-        String number="3+5j";
-        instance.insert(number);
-        /*
-        ComplexNumber result=instance.stack.peek();
-        assertEquals(1,stack.size());
-        assertEquals(3,result.getRe());
-        assertEquals(6,result.getIm());
-        */
+        instance.insert("4+3j");
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(4,result[0].getRe());
+        assertEquals(3,result[0].getIm());
+    }
+    
+    @Test  //Formato errato
+    public void testInsert2() throws SyntaxException{
+        Calculator instance = new Calculator();
+        assertThrows(SyntaxException.class, () -> {
+            instance.insert("4+3+j");
+        });
     }
 
     /**
      * Test of sumCalculator method, of class Calculator.
      */
-    @Test
-    public void testSumCalculator() throws Exception {
-        Variables vars=new Variables();
-        CustomStack<ComplexNumber> stack=new CustomStack<>();
-        stack.push(new ComplexNumber(4,4));
-        System.out.println("sumCalculator");
+    @Test  //caso generale
+    public void testSumCalculator() throws LessThanTwoElementsException, SyntaxException {
         Calculator instance = new Calculator();
-        ComplexNumber expResult = null;
-        ComplexNumber result = instance.sumCalculator();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.insert("4+3j");
+        instance.insert("-5+8j");
+        instance.sumCalculator();
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(-1,result[0].getRe());
+        assertEquals(11,result[0].getIm());
     }
-
+    
+    @Test  //1 solo elemento
+    public void testSumCalculator2() throws LessThanTwoElementsException, SyntaxException{
+        Calculator instance = new Calculator();
+        instance.insert("4+3j");
+        assertThrows(LessThanTwoElementsException.class, () -> {
+            instance.sumCalculator();
+        });
+    }
+    
+    @Test  //0 elementi
+    public void testSumCalculator3() throws LessThanTwoElementsException{
+        Calculator instance = new Calculator();
+        assertThrows(LessThanTwoElementsException.class, () -> {
+            instance.sumCalculator();
+        });
+    }
+    
     /**
      * Test of subCalculator method, of class Calculator.
      */
-    @Test
-    public void testSubCalculator() throws Exception {
-        System.out.println("subCalculator");
+    @Test  //caso generale
+    public void testSubCalculator() throws LessThanTwoElementsException, SyntaxException {
         Calculator instance = new Calculator();
-        ComplexNumber expResult = null;
-        ComplexNumber result = instance.subCalculator();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.insert("4+3j");
+        instance.insert("-5+8j");
+        instance.subCalculator();
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(9,result[0].getRe());
+        assertEquals(-5,result[0].getIm());
     }
-
+    
+    @Test  //1 solo elemento
+    public void testSubCalculator2() throws LessThanTwoElementsException, SyntaxException{
+        Calculator instance = new Calculator();
+        instance.insert("4+3j");
+        assertThrows(LessThanTwoElementsException.class, () -> {
+            instance.subCalculator();
+        });
+    }
+    
+    @Test  //0 elementi
+    public void testSubCalculator3() throws LessThanTwoElementsException{
+        Calculator instance = new Calculator();
+        assertThrows(LessThanTwoElementsException.class, () -> {
+            instance.subCalculator();
+        });
+    }    
+    
     /**
      * Test of molCalculator method, of class Calculator.
      */
-    @Test
-    public void testMolCalculator() throws Exception {
-        System.out.println("molCalculator");
+    @Test  //caso generale
+    public void testMolCalculator() throws LessThanTwoElementsException, SyntaxException {
         Calculator instance = new Calculator();
-        ComplexNumber expResult = null;
-        ComplexNumber result = instance.molCalculator();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.insert("4+3j");
+        instance.insert("-5+8j");
+        instance.molCalculator();
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(9,result[0].getRe()); ??
+        assertEquals(-5,result[0].getIm()); ??
     }
-
+    
+    @Test  //1 solo elemento
+    public void testMolCalculator2() throws LessThanTwoElementsException, SyntaxException{
+        Calculator instance = new Calculator();
+        instance.insert("4+3j");
+        assertThrows(LessThanTwoElementsException.class, () -> {
+            instance.molCalculator();
+        });
+    }
+    
+    @Test  //0 elementi
+    public void testMolCalculator3() throws LessThanTwoElementsException{
+        Calculator instance = new Calculator();
+        assertThrows(LessThanTwoElementsException.class, () -> {
+            instance.molCalculator();
+        });
+    } 
+    
     /**
      * Test of divCalculator method, of class Calculator.
      */
-    @Test
-    public void testDivCalculator() throws Exception {
-        System.out.println("divCalculator");
+    @Test  //caso generale
+    public void testDivCalculator() throws LessThanTwoElementsException, SyntaxException {
         Calculator instance = new Calculator();
-        ComplexNumber expResult = null;
-        ComplexNumber result = instance.divCalculator();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.insert("4+3j");
+        instance.insert("-5+8j");
+        instance.divCalculator();
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(9,result[0].getRe()); ??
+        assertEquals(-5,result[0].getIm());  ??
     }
+    
+    @Test  //1 solo elemento
+    public void testDivCalculator2() throws LessThanTwoElementsException, SyntaxException{
+        Calculator instance = new Calculator();
+        instance.insert("4+3j");
+        assertThrows(LessThanTwoElementsException.class, () -> {
+            instance.divCalculator();
+        });
+    }
+    
+    @Test  //0 elementi
+    public void testDivCalculator3() throws LessThanTwoElementsException{
+        Calculator instance = new Calculator();
+        assertThrows(LessThanTwoElementsException.class, () -> {
+            instance.divCalculator();
+        });
+    }   
 
     /**
      * Test of sqrtCalculator method, of class Calculator.
      */
-    @Test
-    public void testSqrtCalculator() throws Exception {
-        System.out.println("sqrtCalculator");
+    @Test  //caso generale
+    public void testSqrtCalculator() throws LessThanOneElementException, SyntaxException {
         Calculator instance = new Calculator();
-        ComplexNumber expResult = null;
-        ComplexNumber result = instance.sqrtCalculator();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.insert("4+3j");
+        instance.sqrtCalculator();
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(9,result[0].getRe()); ??
+        assertEquals(-5,result[0].getIm());  ??
     }
+    
+    @Test  //0 elementi
+    public void testSqrtCalculator2() throws LessThanOneElementException{
+        Calculator instance = new Calculator();
+        assertThrows(LessThanOneElementException.class, () -> {
+            instance.sqrtCalculator();
+        });
+    } 
+    
 
     /**
      * Test of invCalculator method, of class Calculator.
      */
-    @Test
-    public void testInvCalculator() throws Exception {
-        System.out.println("invCalculator");
+    @Test //caso generale
+    public void testInvCalculator() throws LessThanOneElementException, SyntaxException {
         Calculator instance = new Calculator();
-        ComplexNumber expResult = null;
-        ComplexNumber result = instance.invCalculator();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.insert("4+3j");
+        instance.invCalculator();
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(-4,result[0].getRe()); 
+        assertEquals(-3,result[0].getIm());  
     }
+    
+    @Test  //0 elementi
+    public void testInvCalculator2() throws LessThanOneElementException{
+        Calculator instance = new Calculator();
+        assertThrows(LessThanOneElementException.class, () -> {
+            instance.invCalculator();
+        });
+    } 
+    
 
     /**
      * Test of conjCalculator method, of class Calculator.
      */
-    @Test
-    public void testConjCalculator() throws Exception {
-        System.out.println("conjCalculator");
+    @Test //caso generale
+    public void testConjCalculator() throws LessThanOneElementException, SyntaxException {
         Calculator instance = new Calculator();
-        ComplexNumber expResult = null;
-        ComplexNumber result = instance.conjCalculator();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.insert("4+3j");
+        instance.conjCalculator();
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(4,result[0].getRe()); 
+        assertEquals(-3,result[0].getIm());  
     }
+    
+    @Test  //0 elementi
+    public void testConjCalculator2() throws LessThanOneElementException{
+        Calculator instance = new Calculator();
+        assertThrows(LessThanOneElementException.class, () -> {
+            instance.conjCalculator();
+        });
+    } 
 
     /**
      * Test of saveOnStack method, of class Calculator.
