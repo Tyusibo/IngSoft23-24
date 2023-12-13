@@ -28,10 +28,32 @@ public class VariablesTest {
     }
 
     /**
+     * Test of get method, of class Variables.
+     */
+    @Test  //caso generale
+    public void testGet() throws VariableNotInitializedException {
+        Character c = 'a';
+        ComplexNumber z=new ComplexNumber(4,4);
+        Variables instance = new Variables();
+        instance.put(c, z);
+        ComplexNumber result=instance.get(c);
+        assertEquals(4, result.getRe());   
+        assertEquals(4, result.getIm()); 
+    }
+    @Test  //variabile non inizializzata
+    public void testGet2()throws VariableNotInitializedException {
+        Character c = 'a';
+        Variables instance = new Variables();
+        assertThrows(VariableNotInitializedException.class, () -> {
+            instance.get(c);
+     }); 
+    }
+
+    /**
      * Test of put method, of class Variables.
      */
     @Test  //caso generale
-    public void testPut(){
+    public void testPut()throws VariableNotInitializedException {
         Character c = 'c';
         ComplexNumber z=new ComplexNumber(4,4);
         ComplexNumber w=new ComplexNumber(8,8);
@@ -39,7 +61,7 @@ public class VariablesTest {
         instance.put(c, z);
         ComplexNumber result = instance.put(c, w); //controllo il funzionamento della put precedente
         assertEquals(4, result.getRe());   
-        assertEquals(4, result.getIm());   
+        assertEquals(4, result.getIm());  
     }
 
     @Test  //caso key = null
@@ -67,35 +89,14 @@ public class VariablesTest {
         assertEquals(8, result2.getRe()); 
         assertEquals(8, result2.getIm());    
     }
-    
-    /**
-     * Test of get method, of class Variables.
-     */
-    @Test  //caso generale
-    public void testGet() throws VariableNotInitializedException {
-        Character c = 'c';
-        ComplexNumber z=new ComplexNumber(4,4);
-        Variables instance = new Variables();
-        instance.put(c, z);
-        ComplexNumber result=instance.get(c);
-        assertEquals(4, result.getRe());   
-        assertEquals(4, result.getIm()); 
-    }
-    @Test  //variabile non inizializzata
-    public void testGet2()throws VariableNotInitializedException {
-        Character c = 'c';
-        Variables instance = new Variables();
-        assertThrows(VariableNotInitializedException.class, () -> {
-            instance.get(c);
-     }); 
-    }
+
 
     /**
      * Test of increase method, of class Variables.
      */
     @Test  //caso generale
     public void testIncrease() throws VariableNotInitializedException {
-        Character c = 'c';
+        Character c = 'a';
         ComplexNumber z=new ComplexNumber(4,4);
         ComplexNumber w=new ComplexNumber(7,8);
         Variables instance = new Variables();
@@ -106,7 +107,7 @@ public class VariablesTest {
     }
     @Test  //variabile non inizializzata
     public void testIncrease2() throws VariableNotInitializedException {
-        Character c = 'c';
+        Character c = 'a';
         ComplexNumber z=new ComplexNumber(4,4);
         Variables instance = new Variables(); 
         assertThrows(VariableNotInitializedException.class, () -> {
@@ -118,7 +119,7 @@ public class VariablesTest {
      */
     @Test  //caso generale
     public void testDecrease() throws VariableNotInitializedException {
-        Character c = 'c';
+        Character c = 'a';
         ComplexNumber z=new ComplexNumber(4,4);
         ComplexNumber w=new ComplexNumber(7,8);
         Variables instance = new Variables();
@@ -129,12 +130,12 @@ public class VariablesTest {
     }
     @Test  //variabile non inizializzata
     public void testDecrease2() throws VariableNotInitializedException {
-        Character c = 'c';
+        Character c = 'a';
         ComplexNumber z=new ComplexNumber(4,4);
         Variables instance = new Variables(); 
         assertThrows(VariableNotInitializedException.class, () -> {
             instance.decrease(c,z);
-  });
-
+     }); 
+    
 }
 }

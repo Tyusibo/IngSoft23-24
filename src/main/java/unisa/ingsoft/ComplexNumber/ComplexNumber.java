@@ -4,6 +4,8 @@ import java.util.Locale;
 
 import unisa.ingsoft.Exceptions.SyntaxException;
 
+//import Exceptions.SyntaxException;
+
 public class ComplexNumber implements Operations<ComplexNumber> {
     private final double re;
     private final double im;  
@@ -74,8 +76,19 @@ public class ComplexNumber implements Operations<ComplexNumber> {
 
     @Override
     public String toString() {
-        String ree=((re%1.0!=0) ? String.format(Locale.US,"%.3f", re) : String.format(Locale.US,"%.0f", re));
-        String imm=((im%1.0!=0) ? String.format(Locale.US,"%.3f", im) : String.format(Locale.US,"%.0f", im));
+        String ree="",imm="";
+        String[] partiRe = String.valueOf(re).split("\\.");
+        if(partiRe[1].length()>3)
+            ree=String.format(Locale.US,"%.3f", re);
+        else
+            ree=((re%1.0!=0) ? String.valueOf(re): String.format(Locale.US,"%.0f", re));
+
+        String[] partiIm = String.valueOf(im).split("\\.");
+        if(partiIm[1].length()>3)
+            imm=String.format(Locale.US,"%.3f", im);
+        else
+            imm=((im%1.0!=0) ? String.valueOf(im): String.format(Locale.US,"%.0f", im));
+
         if (im==0) 
             return ree;
         if (re==0)
@@ -90,8 +103,11 @@ public class ComplexNumber implements Operations<ComplexNumber> {
 
         double realPart = 0;
         double imgPart = 0;
-
-        if (input.matches("^[+-]?\\d+(\\.\\d+)?$")){ // Solo parte reale
+        if(input.matches("^[+-]?[0]?([+-][0]j)?$")){
+            realPart = 0;
+            imgPart = 0;
+        } 
+        else if (input.matches("^[+-]?\\d+(\\.\\d+)?$")){ // Solo parte reale
             realPart = Double.parseDouble(input);
         }else if (input.matches("^[+-]?\\d+(\\.\\d+)?j$")){ //Solo parte immaginaria (j alla fine)
             String imgString = input.replaceAll("j", "");
@@ -124,4 +140,3 @@ public class ComplexNumber implements Operations<ComplexNumber> {
         return new ComplexNumber(realPart, imgPart);
     }
 }
-
