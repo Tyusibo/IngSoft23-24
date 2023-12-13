@@ -152,8 +152,8 @@ public class CalculatorTest {
         instance.molCalculator();
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
-        assertEquals(9,result[0].getRe()); ??
-        assertEquals(-5,result[0].getIm()); ??
+        assertEquals(9,result[0].getRe()); //??
+        assertEquals(-5,result[0].getIm()); //??
     }
     
     @Test  //1 solo elemento
@@ -184,8 +184,8 @@ public class CalculatorTest {
         instance.divCalculator();
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
-        assertEquals(9,result[0].getRe()); ??
-        assertEquals(-5,result[0].getIm());  ??
+        assertEquals(9,result[0].getRe()); //??
+        assertEquals(-5,result[0].getIm());  //??
     }
     
     @Test  //1 solo elemento
@@ -215,8 +215,8 @@ public class CalculatorTest {
         instance.sqrtCalculator();
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
-        assertEquals(9,result[0].getRe()); ??
-        assertEquals(-5,result[0].getIm());  ??
+        assertEquals(9,result[0].getRe()); //??
+        assertEquals(-5,result[0].getIm());  //??
     }
     
     @Test  //0 elementi
