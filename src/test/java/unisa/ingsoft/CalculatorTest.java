@@ -3,14 +3,14 @@ package unisa.ingsoft;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import unisa.ingsoft.ComplexNumber.ComplexNumber;
-import unisa.ingsoft.DataStructures.CustomStack;
-import unisa.ingsoft.DataStructures.Variables;
 import unisa.ingsoft.Exceptions.LessThanTwoElementsException;
 import unisa.ingsoft.Exceptions.LessThanOneElementException;
 import unisa.ingsoft.Exceptions.SyntaxException;
 import unisa.ingsoft.Exceptions.VariableNotInitializedException;
 
 public class CalculatorTest {
+Calculator instance;
+double delta=0.001;
     
     public CalculatorTest() {
     }
@@ -25,19 +25,19 @@ public class CalculatorTest {
     
     @BeforeEach
     public void setUp() {
+        instance= new Calculator();
     }
     
     @AfterEach
     public void tearDown() {
     }
 
+    //CASI DI ECCEZIONE PER SQRT E DIV??????
     /**
      * Test of stackToArray method, of class Calculator.
      */
     @Test  //caso generale
     public void testStackToArray() throws SyntaxException {
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         instance.insert("-5+8j");
         instance.insert("0");
@@ -53,7 +53,6 @@ public class CalculatorTest {
     
     @Test  //caso stack vuoto
     public void testStackToArray2(){
-        Calculator instance = new Calculator();
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(0,result.length);
     }
@@ -63,8 +62,6 @@ public class CalculatorTest {
      */
     @Test  //caso generale
     public void testInsert() throws SyntaxException{
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
@@ -85,8 +82,6 @@ public class CalculatorTest {
      */
     @Test  //caso generale
     public void testSumCalculator() throws LessThanTwoElementsException, SyntaxException {
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         instance.insert("-5+8j");
         instance.sumCalculator();
@@ -98,7 +93,6 @@ public class CalculatorTest {
     
     @Test  //1 solo elemento
     public void testSumCalculator2() throws LessThanTwoElementsException, SyntaxException{
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.sumCalculator();
@@ -107,7 +101,6 @@ public class CalculatorTest {
     
     @Test  //0 elementi
     public void testSumCalculator3() throws LessThanTwoElementsException{
-        Calculator instance = new Calculator();
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.sumCalculator();
         });
@@ -118,8 +111,6 @@ public class CalculatorTest {
      */
     @Test  //caso generale
     public void testSubCalculator() throws LessThanTwoElementsException, SyntaxException {
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         instance.insert("-5+8j");
         instance.subCalculator();
@@ -131,7 +122,6 @@ public class CalculatorTest {
     
     @Test  //1 solo elemento
     public void testSubCalculator2() throws LessThanTwoElementsException, SyntaxException{
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.subCalculator();
@@ -140,7 +130,6 @@ public class CalculatorTest {
     
     @Test  //0 elementi
     public void testSubCalculator3() throws LessThanTwoElementsException{
-        Calculator instance = new Calculator();
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.subCalculator();
         });
@@ -151,8 +140,6 @@ public class CalculatorTest {
      */
     @Test  //caso generale
     public void testMolCalculator() throws LessThanTwoElementsException, SyntaxException {
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         instance.insert("-5+8j");
         instance.molCalculator();
@@ -164,7 +151,6 @@ public class CalculatorTest {
     
     @Test  //1 solo elemento
     public void testMolCalculator2() throws LessThanTwoElementsException, SyntaxException{
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.molCalculator();
@@ -173,7 +159,6 @@ public class CalculatorTest {
     
     @Test  //0 elementi
     public void testMolCalculator3() throws LessThanTwoElementsException{
-        Calculator instance = new Calculator();
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.molCalculator();
         });
@@ -184,8 +169,6 @@ public class CalculatorTest {
      */
     @Test  //caso generale
     public void testDivCalculator() throws LessThanTwoElementsException, SyntaxException {
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         instance.insert("-5+8j");
         instance.divCalculator();
@@ -197,7 +180,6 @@ public class CalculatorTest {
     
     @Test  //1 solo elemento
     public void testDivCalculator2() throws LessThanTwoElementsException, SyntaxException{
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.divCalculator();
@@ -206,19 +188,25 @@ public class CalculatorTest {
     
     @Test  //0 elementi
     public void testDivCalculator3() throws LessThanTwoElementsException{
-        Calculator instance = new Calculator();
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.divCalculator();
         });
     }   
 
+    @Test  //caso generale
+    public void testDivCalculator4() throws LessThanTwoElementsException, SyntaxException, ArithmeticException {
+        instance.insert("4+3j");
+        instance.insert("0");
+        assertThrows(ArithmeticException.class, () -> {
+            instance.divCalculator();
+        });  
+    }   
+       
     /**
      * Test of sqrtCalculator method, of class Calculator.
      */
     @Test  //caso generale
     public void testSqrtCalculator() throws LessThanOneElementException, SyntaxException {
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         instance.sqrtCalculator();
         ComplexNumber[] result = instance.stackToArray();
@@ -229,20 +217,15 @@ public class CalculatorTest {
     
     @Test  //0 elementi
     public void testSqrtCalculator2() throws LessThanOneElementException{
-        Calculator instance = new Calculator();
         assertThrows(LessThanOneElementException.class, () -> {
             instance.sqrtCalculator();
         });
-    } 
-    
-
+    }     
     /**
      * Test of invCalculator method, of class Calculator.
      */
     @Test //caso generale
     public void testInvCalculator() throws LessThanOneElementException, SyntaxException {
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         instance.invCalculator();
         ComplexNumber[] result = instance.stackToArray();
@@ -253,20 +236,15 @@ public class CalculatorTest {
     
     @Test  //0 elementi
     public void testInvCalculator2() throws LessThanOneElementException{
-        Calculator instance = new Calculator();
         assertThrows(LessThanOneElementException.class, () -> {
             instance.invCalculator();
         });
-    } 
-    
-
+    }  
     /**
      * Test of conjCalculator method, of class Calculator.
      */
     @Test //caso generale
     public void testConjCalculator() throws LessThanOneElementException, SyntaxException {
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         instance.conjCalculator();
         ComplexNumber[] result = instance.stackToArray();
@@ -277,7 +255,6 @@ public class CalculatorTest {
     
     @Test  //0 elementi
     public void testConjCalculator2() throws LessThanOneElementException{
-        Calculator instance = new Calculator();
         assertThrows(LessThanOneElementException.class, () -> {
             instance.conjCalculator();
         });
@@ -288,8 +265,6 @@ public class CalculatorTest {
     @Test  //caso generale
     public void testSaveOnVariable() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
         Character c='c';
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         assertTrue(instance.stackToArray().length==1);
         instance.saveOnVariable(c);
@@ -302,7 +277,6 @@ public class CalculatorTest {
     @Test  //stack vuoto
     public void testSaveOnVariable2() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
         Character c='c';
-        Calculator instance = new Calculator();
         assertThrows(LessThanOneElementException.class, () -> {
             instance.saveOnVariable(c);
         });
@@ -314,8 +288,6 @@ public class CalculatorTest {
     @Test
     public void testSaveOnStack() throws SyntaxException, VariableNotInitializedException, LessThanOneElementException{
         Character c='c';
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         instance.saveOnVariable(c);
         assertTrue(instance.stackToArray().length==0);
@@ -327,7 +299,6 @@ public class CalculatorTest {
     @Test  //variabile non inizializzata
     public void testSaveOnStack2() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
         Character c='c';
-        Calculator instance = new Calculator();
         assertThrows(VariableNotInitializedException.class, () -> {
             instance.saveOnStack(c);
         });
@@ -339,8 +310,6 @@ public class CalculatorTest {
     @Test
     public void testIncreaseVariable() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException{
         Character c='c';
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         instance.saveOnVariable(c);
         instance.insert("3+7j");
@@ -354,7 +323,6 @@ public class CalculatorTest {
     @Test  //stack vuoto
     public void testIncreaseVariable2() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
         Character c='c';
-        Calculator instance = new Calculator();
         assertThrows(LessThanOneElementException.class, () -> {
             instance.increaseVariable(c);
         });
@@ -363,7 +331,6 @@ public class CalculatorTest {
     @Test  //variabile non inizializzata
     public void testIncreaseVariable3() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
         Character c='c';
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         assertThrows(VariableNotInitializedException.class, () -> {
             instance.increaseVariable(c);
@@ -376,8 +343,6 @@ public class CalculatorTest {
     @Test
     public void testDecreaseVariable() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException{
         Character c='c';
-        double delta=0.001;
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         instance.saveOnVariable(c);
         instance.insert("3+7j");
@@ -391,7 +356,6 @@ public class CalculatorTest {
     @Test  //stack vuoto
     public void testDecreaseVariable2() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
         Character c='c';
-        Calculator instance = new Calculator();
         assertThrows(LessThanOneElementException.class, () -> {
             instance.decreaseVariable(c);
         });
@@ -400,7 +364,6 @@ public class CalculatorTest {
     @Test  //variabile non inizializzata
     public void testDecreaseVariable3() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
         Character c='c';
-        Calculator instance = new Calculator();
         instance.insert("4+3j");
         assertThrows(VariableNotInitializedException.class, () -> {
             instance.decreaseVariable(c);

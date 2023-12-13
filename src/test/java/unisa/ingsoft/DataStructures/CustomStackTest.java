@@ -2,11 +2,13 @@ package unisa.ingsoft.DataStructures;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
+import unisa.ingsoft.ComplexNumber.ComplexNumber;
 import unisa.ingsoft.Exceptions.LessThanOneElementException;
 import unisa.ingsoft.Exceptions.LessThanTwoElementsException;
 
-public class CustomStackTest {
-    
+public class CustomStackTest{
+CustomStack<ComplexNumber> instance; 
+double delta=0.001;
     public CustomStackTest() {
     }
     
@@ -20,32 +22,31 @@ public class CustomStackTest {
     
     @BeforeEach
     public void setUp() {
+        instance= new CustomStack<>();
     }
     
     @AfterEach
     public void tearDown() {
     }
     
-    
-     /**
-     * Test of drop method, of class CustomStack.
-     */
+    /**
+    * Test of drop method, of class CustomStack.
+    */
     @Test  //caso generale
     public void testDrop() {
-        CustomStack<Integer> instance = new CustomStack<>();
-        instance.push(1); instance.push(2); instance.push(3); 
+        instance.push(new ComplexNumber(1,1));
+        instance.push(new ComplexNumber(2,2));
         instance.drop();
-        assertEquals(2,instance.size());
-        assertEquals(2,instance.pop());
-        assertEquals(1,instance.pop());    
+        assertEquals(1,instance.size());
+        ComplexNumber result=instance.peek();
+        assertEquals(1,result.getRe(), delta);
+        assertEquals(1,result.getIm(), delta);    
         instance.drop();
         assertTrue(instance.isEmpty());
     }
     
-
     @Test  //caso con 0 elementi
     public void testDrop2() {
-        CustomStack<Integer> instance = new CustomStack<>();
         instance.drop();
         assertTrue(instance.isEmpty());
     }
@@ -55,15 +56,13 @@ public class CustomStackTest {
      */
     @Test  //caso generale
     public void testClear() {
-        CustomStack<Integer> instance = new CustomStack<>();
-        instance.push(1); instance.push(2); instance.push(3); 
+        instance.push(new ComplexNumber(1,1)); 
         instance.clear();
         assertTrue(instance.isEmpty());
     }
     
     @Test  //caso con 0 elementi
     public void testClear2() {
-        CustomStack<Integer> instance = new CustomStack<>();
         instance.clear();
         assertTrue(instance.isEmpty());
     }
@@ -73,19 +72,21 @@ public class CustomStackTest {
      */
     @Test  //caso generale
     public void testSwap() throws LessThanTwoElementsException {
-        CustomStack<Integer> instance = new CustomStack<>();
-        instance.push(1); instance.push(2); instance.push(3); 
+        instance.push(new ComplexNumber(1,1));
+        instance.push(new ComplexNumber(2,2));
         instance.swap();
-        assertEquals(3,instance.size());
-        assertEquals(2,instance.pop());
-        assertEquals(3,instance.pop());
-        assertEquals(1,instance.pop()); 
+        assertEquals(2,instance.size());
+        ComplexNumber result1=instance.pop();
+        assertEquals(1,result1.getRe(), delta);
+        assertEquals(1,result1.getIm(), delta); 
+        ComplexNumber result2=instance.pop();
+        assertEquals(2,result2.getRe(), delta);
+        assertEquals(2,result2.getIm(), delta);
     }
     
     @Test  //caso con 1 elemento
     public void testSwap2() throws LessThanTwoElementsException{
-        CustomStack<Integer> instance = new CustomStack<> ();
-        instance.push(1); 
+        instance.push(new ComplexNumber(1,1));
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.swap();
      });
@@ -93,7 +94,6 @@ public class CustomStackTest {
                 
     @Test  //caso con 0 elementi
     public void testSwap3() throws LessThanTwoElementsException {
-        CustomStack<Integer>  instance = new CustomStack<> ();
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.swap();
      });
@@ -104,19 +104,19 @@ public class CustomStackTest {
      */
     @Test //caso generale
     public void testDup() throws LessThanOneElementException {
-        CustomStack<Integer> instance = new CustomStack<>();
-        instance.push(1); instance.push(2); instance.push(3); 
+        instance.push(new ComplexNumber(1,1));
         instance.dup();
-        assertEquals(4,instance.size());
-        assertEquals(3,instance.pop());
-        assertEquals(3,instance.pop());
-        assertEquals(2,instance.pop());
-        assertEquals(1,instance.pop());         
+        assertEquals(2,instance.size());
+        ComplexNumber result2=instance.pop();
+        assertEquals(1,result2.getRe(), delta);
+        assertEquals(1,result2.getIm(), delta); 
+        ComplexNumber result1=instance.pop();
+        assertEquals(1,result1.getRe(), delta);
+        assertEquals(1,result1.getIm(), delta);        
     }
     
     @Test //caso con 0 elementi
     public void testDup2() throws LessThanOneElementException{
-        CustomStack<Integer>  instance = new CustomStack<> ();
         assertThrows(LessThanOneElementException.class, () -> {
             instance.dup();
      });       
@@ -127,19 +127,23 @@ public class CustomStackTest {
      */
     @Test  //caso generale
     public void testOver() throws LessThanTwoElementsException {
-        CustomStack<Integer>  instance = new CustomStack<> ();
-        instance.push(1); instance.push(2); instance.push(3);  
+        instance.push(new ComplexNumber(1,1));
+        instance.push(new ComplexNumber(2,2));
         instance.over();
-        assertEquals(4,instance.size());
-        assertEquals(2,instance.pop());
-        assertEquals(3,instance.pop());
-        assertEquals(2,instance.pop());
-        assertEquals(1,instance.pop()); 
+        assertEquals(3,instance.size());
+        ComplexNumber result1=instance.pop();
+        assertEquals(1,result1.getRe(), delta);
+        assertEquals(1,result1.getIm(), delta); 
+        ComplexNumber result2=instance.pop();
+        assertEquals(2,result2.getRe(), delta);
+        assertEquals(2,result2.getIm(), delta); 
+        ComplexNumber result3=instance.pop();
+        assertEquals(1,result3.getRe(), delta);
+        assertEquals(1,result3.getIm(), delta); 
     }
     @Test  //caso con 1 elemento
     public void testOver2() throws LessThanTwoElementsException {
-        CustomStack<Integer>  instance = new CustomStack<> ();
-        instance.push(1); 
+        instance.push(new ComplexNumber(1,1));
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.over();
      }); 
@@ -147,7 +151,6 @@ public class CustomStackTest {
     
     @Test  //caso con 0 elementi
     public void testOver3() throws LessThanTwoElementsException {
-        CustomStack<Integer>  instance = new CustomStack<> ();
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.over();
      }); 

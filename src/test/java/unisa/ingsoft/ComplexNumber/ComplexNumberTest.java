@@ -7,7 +7,8 @@ import unisa.ingsoft.Exceptions.SyntaxException;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ComplexNumberTest {
-    
+double delta=0.001;
+
     public ComplexNumberTest() {
     }
     
@@ -53,7 +54,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(12,0);
         ComplexNumber z = new ComplexNumber(3,0);
         ComplexNumber result = instance.sum(z);
-        double delta=0.001;
         assertEquals(15, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     }
@@ -62,7 +62,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(-12,0);
         ComplexNumber z = new ComplexNumber(-3,0);
         ComplexNumber result = instance.sum(z);
-        double delta=0.001;
         assertEquals(-15, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     }
@@ -71,7 +70,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(12,0);
         ComplexNumber z = new ComplexNumber(-3,0);
         ComplexNumber result = instance.sum(z);
-        double delta=0.001;
         assertEquals(9, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     } 
@@ -80,7 +78,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(-12,0);
         ComplexNumber z = new ComplexNumber(3,0);
         ComplexNumber result = instance.sum(z);
-        double delta=0.001;
         assertEquals(-9, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     } 
@@ -89,7 +86,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(0,6);
         ComplexNumber z = new ComplexNumber(0,5);
         ComplexNumber result = instance.sum(z);
-        double delta=0.001;
         assertEquals(0, result.getRe(), delta);
         assertEquals(11, result.getIm(), delta);
     } 
@@ -98,7 +94,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(0,-6);
         ComplexNumber z = new ComplexNumber(0,-5);
         ComplexNumber result = instance.sum(z);
-        double delta=0.001;
         assertEquals(0, result.getRe(), delta);
         assertEquals(-11, result.getIm(), delta);
     } 
@@ -107,7 +102,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(0,6);
         ComplexNumber z = new ComplexNumber(0,-5);
         ComplexNumber result = instance.sum(z);
-        double delta=0.001;
         assertEquals(0, result.getRe(), delta);
         assertEquals(1, result.getIm(), delta);
     } 
@@ -116,7 +110,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(0,-6);
         ComplexNumber z = new ComplexNumber(0,5);
         ComplexNumber result = instance.sum(z);
-        double delta=0.001;
         assertEquals(0, result.getRe(), delta);
         assertEquals(-1, result.getIm(), delta);
     } 
@@ -125,7 +118,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(0,-6);
         ComplexNumber z = new ComplexNumber(0,5);
         ComplexNumber result = instance.sum(z);
-        double delta=0.001;
         assertEquals(0, result.getRe(), delta);
         assertEquals(-1, result.getIm(), delta);
     } 
@@ -138,7 +130,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(12.5,6.3);
         ComplexNumber z = new ComplexNumber(3.3,6.5);
         ComplexNumber result = instance.sub(z);
-        double delta=0.001;
         assertEquals(9.2, result.getRe(), delta);
         assertEquals(-0.2, result.getIm(), delta);
     }
@@ -151,7 +142,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(12.5,6.3);
         ComplexNumber z = new ComplexNumber(3.3,6.5);
         ComplexNumber result = instance.mol(z);
-        double delta=0.001;
         assertEquals(0.3, result.getRe(), delta);
         assertEquals(102.04, result.getIm(), delta);
     }
@@ -161,7 +151,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(0,0);
         ComplexNumber z = new ComplexNumber(91,52.91);
         ComplexNumber result = instance.mol(z);
-        double delta=0.001;
         assertEquals(0, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     }
@@ -171,7 +160,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(73.53,24.66);
         ComplexNumber z = new ComplexNumber(0,0);
         ComplexNumber result = instance.mol(z);
-        double delta=0.001;
         assertEquals(0, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     }
@@ -184,7 +172,6 @@ public class ComplexNumberTest {
         ComplexNumber instance = new ComplexNumber(12.5,6.3);
         ComplexNumber z = new ComplexNumber(3.3,6.5);
         ComplexNumber result = instance.div(z);
-        double delta=0.001;
         assertEquals(1.546, result.getRe(), delta);
         assertEquals(-1.137, result.getIm(), delta);
     }
@@ -194,7 +181,6 @@ public class ComplexNumberTest {
             ComplexNumber instance = new ComplexNumber(0,0);
             ComplexNumber z = new ComplexNumber(24.5,67.1);
             ComplexNumber result = instance.div(z);
-            double delta=0.001;
             assertEquals(0, result.getRe(), delta);
             assertEquals(0, result.getIm(), delta);
     }
@@ -221,7 +207,6 @@ public class ComplexNumberTest {
     public void testSqrt() {
         ComplexNumber instance = new ComplexNumber(4.81,2.63);
         ComplexNumber result = instance.sqrt();
-        double delta=0.001;
         assertEquals(2.268, result.getRe(), delta);
         assertEquals(0.579, result.getIm(), delta);
         ComplexNumber instance1 = new ComplexNumber(4.81,-2.63);
@@ -241,7 +226,6 @@ public class ComplexNumberTest {
     public void testSqrt2() {
         ComplexNumber instance = new ComplexNumber(0,2.63);
         ComplexNumber result = instance.sqrt();
-        double delta=0.001;
         assertEquals(1.146, result.getRe(), delta);
         assertEquals(1.146, result.getIm(), delta);
     }
@@ -250,7 +234,6 @@ public class ComplexNumberTest {
     public void testSqrt3() {
         ComplexNumber instance = new ComplexNumber(4.81,0);
         ComplexNumber result = instance.sqrt();
-        double delta=0.001;
         assertEquals(2.193, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     }
@@ -259,7 +242,6 @@ public class ComplexNumberTest {
     public void testSqrt4() {
         ComplexNumber instance = new ComplexNumber(0,0);
         ComplexNumber result = instance.sqrt();
-        double delta=0.001;
         assertEquals(0, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     } 
@@ -270,7 +252,6 @@ public class ComplexNumberTest {
     public void testInv() {
         ComplexNumber instance = new ComplexNumber(-15.82,49.39);
         ComplexNumber result = instance.inv();
-        double delta=0.001;
         assertEquals(15.82, result.getRe(), delta);
         assertEquals(-49.39, result.getIm(), delta);
         ComplexNumber instance1 = new ComplexNumber(15.82,-49.39);
@@ -283,7 +264,6 @@ public class ComplexNumberTest {
     public void testInv2() {
         ComplexNumber instance = new ComplexNumber(15.82,49.39);
         ComplexNumber result = instance.inv();
-        double delta=0.001;
         assertEquals(-15.82, result.getRe(), delta);
         assertEquals(-49.39, result.getIm(), delta);
         ComplexNumber instance1 = new ComplexNumber(-15.82,-49.39);
@@ -295,7 +275,6 @@ public class ComplexNumberTest {
     public void testInv3() {
         ComplexNumber instance = new ComplexNumber(0,49.39);
         ComplexNumber result = instance.inv();
-        double delta=0.001;
         assertEquals(0, result.getRe(), delta);
         assertEquals(-49.39, result.getIm(), delta);
     }
@@ -303,7 +282,6 @@ public class ComplexNumberTest {
     public void testInv4() {
         ComplexNumber instance = new ComplexNumber(-15.82,0);
         ComplexNumber result = instance.inv();
-        double delta=0.001;
         assertEquals(15.82, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     }
@@ -312,7 +290,6 @@ public class ComplexNumberTest {
     public void testInv5() {
         ComplexNumber instance = new ComplexNumber(0,0);
         ComplexNumber result = instance.inv();
-        double delta=0.001;
         assertEquals(0, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     }
@@ -324,7 +301,6 @@ public class ComplexNumberTest {
     public void testConj() {
         ComplexNumber instance = new ComplexNumber(-15.82,49.39);
         ComplexNumber result = instance.conj();
-        double delta=0.001;
         assertEquals(-15.82, result.getRe(), delta);
         assertEquals(-49.39, result.getIm(), delta);
     }
@@ -332,7 +308,6 @@ public class ComplexNumberTest {
     public void testConj2() {
         ComplexNumber instance = new ComplexNumber(0,-49.39);
         ComplexNumber result = instance.conj();
-        double delta=0.001;
         assertEquals(0, result.getRe(), delta);
         assertEquals(49.39, result.getIm(), delta);
     }
@@ -340,7 +315,6 @@ public class ComplexNumberTest {
     public void testConj3() {
         ComplexNumber instance = new ComplexNumber(15.82,0);
         ComplexNumber result = instance.conj();
-        double delta=0.001;
         assertEquals(15.82, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     }
