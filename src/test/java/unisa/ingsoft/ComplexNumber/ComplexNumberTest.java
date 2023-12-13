@@ -448,7 +448,7 @@ public class ComplexNumberTest {
     }
     
     @Test //parte reale + solo unità immaginaria
-    public void testParse13() throws SyntaxException{
+    public void testParse14() throws SyntaxException{
         String instance = "4+j";
         assertThrows(SyntaxException.class, () -> {
             ComplexNumber.parseComplexNumber(instance);
@@ -456,7 +456,7 @@ public class ComplexNumberTest {
     }
     
     @Test //parte reale - solo unità immaginaria
-    public void testParse13() throws SyntaxException{
+    public void testParse15() throws SyntaxException{
         String instance = "4-j";
         assertThrows(SyntaxException.class, () -> {
             ComplexNumber.parseComplexNumber(instance);
