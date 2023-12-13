@@ -34,138 +34,60 @@ public class CalculatorController {
         String input = outputview.getText();
 
         // enter rocco
-        if (!input.isEmpty()) {
-            if(input.equals("+")){
-                try{
-
+        try {
+            if (!input.isEmpty()) {
+                if(input.equals("+")){
                     ComplexNumber somma = calculator.sumCalculator();
                     outputview.setText(somma.toString());
-
-                }catch(LessThanTwoElementsException ex){
-                    String errMessage = ex.getMessage();
-                    outputview.setText(errMessage);
-                }
-            }else if (input.equals("-")){
-                try{
-
+                }else if (input.equals("-")){
                     ComplexNumber diff = calculator.subCalculator();
                     outputview.setText(diff.toString());
-                    showStackContent();
-
-                }catch(LessThanTwoElementsException ex){
-                    String errMessage = ex.getMessage();
-                    outputview.setText(errMessage);
-                }
-            }else if (input.equals("*")){
-                try{
-
+                }else if (input.equals("*")){
                     ComplexNumber mol = calculator.molCalculator();
                     outputview.setText(mol.toString());
-                    showStackContent();
-
-                }catch(LessThanTwoElementsException ex){
-                    String errMessage = ex.getMessage();
-                    outputview.setText(errMessage);
-                }
-            }else if (input.equals("/")){
-                try{
-
+                }else if (input.equals("/")){
                     ComplexNumber div = calculator.divCalculator();
                     outputview.setText(div.toString());
-                    showStackContent();
-
-                }catch(LessThanTwoElementsException ex){
-                    String errMessage = ex.getMessage();
-                    outputview.setText(errMessage);
-                }
-            }else if (input.equals("sqrt")){
-                try{
-
+                }else if (input.equals("sqrt")){
                     ComplexNumber sqrt = calculator.sqrtCalculator();
                     outputview.setText(sqrt.toString());
-                    showStackContent();
-
-                }catch(LessThanOneElementException ex){
-                    String errMessage = ex.getMessage();
-                    outputview.setText(errMessage);
-                }
-            }else if (input.equals("conj")){
-                try{
-
+                }else if (input.equals("conj")){
                     ComplexNumber conj = calculator.conjCalculator();
                     outputview.setText(conj.toString());
-                    showStackContent();
-
-                }catch(LessThanOneElementException ex){
-                    String errMessage = ex.getMessage();
-                    outputview.setText(errMessage);
-                }
-            }else if (input.equals("+/-")){
-                try{
-
+                }else if (input.equals("+/-")){
                     ComplexNumber inv = calculator.invCalculator();
                     outputview.setText(inv.toString());
-                    showStackContent();
-
-                }catch(LessThanOneElementException ex){
-                    String errMessage = ex.getMessage();
-                    outputview.setText(errMessage);
-                }
-            }else if (input.charAt(0) == '>' && Character.isLowerCase(input.charAt(1))) {
-                    try{
-                        ComplexNumber num = calculator.saveOnVariable(input.charAt(1));
-                        showStackContent();
-                        outputview.setText(input.charAt(1)+"="+num.toString());
-                    }catch(LessThanOneElementException wx){
-                        outputview.setText(wx.getMessage());
-                    }catch(VariableNotInitializedException w){
-                        outputview.setText(w.getMessage());
-                    }
-            }else if (input.charAt(0) == '<' && Character.isLowerCase(input.charAt(1))){
-                    try{
-                        ComplexNumber num = calculator.saveOnStack(input.charAt(1));
-                        showStackContent();
-                        outputview.setText(input.charAt(1)+"=" + num);
-                    }catch(VariableNotInitializedException wx){
-                        String err = wx.getMessage();
-                        outputview.setText(err);
-                    }
-            }else if (input.charAt(0) == '+' && Character.isLowerCase(input.charAt(1))){
-                    try{
-                        ComplexNumber num = calculator.increaseVariable(input.charAt(1));
-                        showStackContent();
-                        outputview.setText(input.charAt(1)+"="+num.toString());
-                    }catch(VariableNotInitializedException ex){
-                        String err = ex.getMessage();
-                        outputview.setText(err);
-                    }catch(LessThanOneElementException wx){
-                        outputview.setText(wx.getMessage());
-                    }
-            }else if (input.charAt(0) == '-' && Character.isLowerCase(input.charAt(1))){
-                    try{
-                        ComplexNumber num = calculator.decreaseVariable(input.charAt(1));
-                        showStackContent();
-                        outputview.setText(input.charAt(1)+"="+num.toString());
-                    }catch(VariableNotInitializedException ex){
-                        String err = ex.getMessage();
-                        outputview.setText(err);
-                    }catch(LessThanOneElementException wx){
-                        outputview.setText(wx.getMessage());
-                    }
-            }else{
-                try{
+                }else if (input.charAt(0) == '>' && Character.isLowerCase(input.charAt(1))) {
+                    ComplexNumber num = calculator.saveOnVariable(input.charAt(1));
+                    outputview.setText(input.charAt(1)+"="+num.toString());
+                }else if (input.charAt(0) == '<' && Character.isLowerCase(input.charAt(1))){
+                    ComplexNumber num = calculator.saveOnStack(input.charAt(1));
+                    outputview.setText(input.charAt(1)+"=" + num);
+                }else if (input.charAt(0) == '+' && Character.isLowerCase(input.charAt(1))){
+                    ComplexNumber num = calculator.increaseVariable(input.charAt(1));
+                    outputview.setText(input.charAt(1)+"="+num.toString());
+                }else if (input.charAt(0) == '-' && Character.isLowerCase(input.charAt(1))){
+                    ComplexNumber num = calculator.decreaseVariable(input.charAt(1));
+                    outputview.setText(input.charAt(1)+"="+num.toString());
+                }else{
                     calculator.insert(input);
-                    showStackContent();
                     outputview.setText("");
-                }catch(SyntaxException ex){
-                    String err = ex.getMessage();
-                    outputview.setText(err);
                 }
+                showStackContent();
             }
-
-            showStackContent();
+        }catch(LessThanTwoElementsException ex){
+            String errMessage = ex.getMessage();
+            outputview.setText(errMessage);
+        }catch(LessThanOneElementException ex){
+            String errMessage = ex.getMessage();
+            outputview.setText(errMessage);
+        }catch(VariableNotInitializedException ex){
+            String err = ex.getMessage();
+            outputview.setText(err);
+        }catch(SyntaxException ex){
+            String err = ex.getMessage();
+            outputview.setText(err);
         }
-
         
     }
 
