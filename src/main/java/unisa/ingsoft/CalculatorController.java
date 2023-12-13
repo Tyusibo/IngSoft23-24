@@ -125,7 +125,7 @@ public class CalculatorController {
                     try{
                         ComplexNumber num = calculator.saveOnStack(input.charAt(1));
                         showStackContent();
-                        outputview.setText(input.charAt(1)+"=null");
+                        outputview.setText(input.charAt(1)+"=" + num);
                     }catch(VariableNotInitializedException wx){
                         String err = wx.getMessage();
                         outputview.setText(err);

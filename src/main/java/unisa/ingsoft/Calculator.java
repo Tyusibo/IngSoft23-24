@@ -82,9 +82,7 @@ public class Calculator {
     }
 
     public ComplexNumber saveOnStack(Character c) throws VariableNotInitializedException{
-        stack.push(vars.get(c));
-        vars.put(c,null);
-        return null;
+        return stack.push(vars.get(c));
     }
     public ComplexNumber saveOnVariable(Character c) throws LessThanOneElementException, VariableNotInitializedException{
         if(!stack.isEmpty()){

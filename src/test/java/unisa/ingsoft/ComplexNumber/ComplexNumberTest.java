@@ -48,15 +48,87 @@ public class ComplexNumberTest {
     /**
      * Test of sum method, of class ComplexNumber.
      */
-    @Test  //caso generale
+    @Test  //caso parte reale positiva parte immaginaria nulla
     public void testSum() {
-        ComplexNumber instance = new ComplexNumber(12.5,6.3);
-        ComplexNumber z = new ComplexNumber(3.3,6.5);
+        ComplexNumber instance = new ComplexNumber(12,0);
+        ComplexNumber z = new ComplexNumber(3,0);
         ComplexNumber result = instance.sum(z);
         double delta=0.001;
-        assertEquals(15.8, result.getRe(), delta);
-        assertEquals(12.8, result.getIm(), delta);
+        assertEquals(15, result.getRe(), delta);
+        assertEquals(0, result.getIm(), delta);
     }
+    @Test  //caso parte reale negativa parte immaginaria nulla
+    public void testSum2() {
+        ComplexNumber instance = new ComplexNumber(-12,0);
+        ComplexNumber z = new ComplexNumber(-3,0);
+        ComplexNumber result = instance.sum(z);
+        double delta=0.001;
+        assertEquals(-15, result.getRe(), delta);
+        assertEquals(0, result.getIm(), delta);
+    }
+    @Test  //caso parte reale discorde parte immaginaria nulla
+    public void testSum3() {
+        ComplexNumber instance = new ComplexNumber(12,0);
+        ComplexNumber z = new ComplexNumber(-3,0);
+        ComplexNumber result = instance.sum(z);
+        double delta=0.001;
+        assertEquals(9, result.getRe(), delta);
+        assertEquals(0, result.getIm(), delta);
+    } 
+    @Test  //caso parte reale discorde parte immaginaria nulla
+    public void testSum4() {
+        ComplexNumber instance = new ComplexNumber(-12,0);
+        ComplexNumber z = new ComplexNumber(3,0);
+        ComplexNumber result = instance.sum(z);
+        double delta=0.001;
+        assertEquals(-9, result.getRe(), delta);
+        assertEquals(0, result.getIm(), delta);
+    } 
+    @Test  //caso parte reale nulla parte immaginaria positiva
+    public void testSum5() {
+        ComplexNumber instance = new ComplexNumber(0,6);
+        ComplexNumber z = new ComplexNumber(0,5);
+        ComplexNumber result = instance.sum(z);
+        double delta=0.001;
+        assertEquals(0, result.getRe(), delta);
+        assertEquals(11, result.getIm(), delta);
+    } 
+    @Test  //caso parte reale nulla parte immaginaria negativa
+    public void testSum6() {
+        ComplexNumber instance = new ComplexNumber(0,-6);
+        ComplexNumber z = new ComplexNumber(0,-5);
+        ComplexNumber result = instance.sum(z);
+        double delta=0.001;
+        assertEquals(0, result.getRe(), delta);
+        assertEquals(-11, result.getIm(), delta);
+    } 
+    @Test  //caso parte reale nulla parte immaginaria discorde
+    public void testSum7() {
+        ComplexNumber instance = new ComplexNumber(0,6);
+        ComplexNumber z = new ComplexNumber(0,-5);
+        ComplexNumber result = instance.sum(z);
+        double delta=0.001;
+        assertEquals(0, result.getRe(), delta);
+        assertEquals(1, result.getIm(), delta);
+    } 
+    @Test  //caso parte reale nulla parte immaginaria discorde
+    public void testSum8() {
+        ComplexNumber instance = new ComplexNumber(0,-6);
+        ComplexNumber z = new ComplexNumber(0,5);
+        ComplexNumber result = instance.sum(z);
+        double delta=0.001;
+        assertEquals(0, result.getRe(), delta);
+        assertEquals(-1, result.getIm(), delta);
+    } 
+    @Test  //caso parte reale positiva parte immaginaria positiva
+    public void testSum9() {
+        ComplexNumber instance = new ComplexNumber(0,-6);
+        ComplexNumber z = new ComplexNumber(0,5);
+        ComplexNumber result = instance.sum(z);
+        double delta=0.001;
+        assertEquals(0, result.getRe(), delta);
+        assertEquals(-1, result.getIm(), delta);
+    } 
 
     /**
      * Test of sub method, of class ComplexNumber.
