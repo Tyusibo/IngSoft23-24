@@ -1,7 +1,5 @@
 package unisa.ingsoft;
 
-import java.util.EmptyStackException;
-
 import unisa.ingsoft.ComplexNumber.ComplexNumber;
 import unisa.ingsoft.DataStructures.CustomStack;
 import unisa.ingsoft.DataStructures.Variables;
@@ -84,13 +82,13 @@ public class Calculator {
     }
 
     public ComplexNumber saveOnStack(Character c) throws VariableNotInitializedException{
-        ComplexNumber num = vars.get(c);
-        stack.push(num);
-        return num;
+        stack.push(vars.get(c));
+        vars.put(c,null);
+        return null;
     }
     public ComplexNumber saveOnVariable(Character c) throws LessThanOneElementException, VariableNotInitializedException{
         if(!stack.isEmpty()){
-            ComplexNumber num = vars.put(c, stack.pop());
+            vars.put(c, stack.pop());
             return vars.get(c);
         }else
             throw new LessThanOneElementException();
