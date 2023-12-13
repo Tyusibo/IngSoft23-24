@@ -423,12 +423,28 @@ public class ComplexNumberTest {
         assertEquals(5,result.getIm());
     }
 
+    @Test //parte reale positiva e parte immaginaria positiva con numeri decimali
+    public void testParseB() throws SyntaxException{
+        String instance = "2.4+34.12j";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(2.4,result.getRe());
+        assertEquals(34.12,result.getIm());
+    }
+
     @Test //parte reale positiva con segno e parte immaginaria positiva
     public void testParse2() throws SyntaxException{
         String instance = "+4+5j";
         ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
         assertEquals(4,result.getRe());
         assertEquals(5,result.getIm());
+    }
+
+    @Test //parte reale positiva con segno e parte immaginaria positiva con numeri decimali
+    public void testParse2B() throws SyntaxException{
+        String instance = "+2.4+34.12j";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(2.4,result.getRe());
+        assertEquals(34.12,result.getIm());
     }
 
     @Test //parte reale positiva e parte immaginaria negativa
@@ -439,12 +455,28 @@ public class ComplexNumberTest {
         assertEquals(-5,result.getIm());
     }
 
+    @Test //parte reale positiva e parte immaginaria negativa con numeri decimali
+    public void testParse3B() throws SyntaxException{
+        String instance = "2.4-34.12j";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(2.4,result.getRe());
+        assertEquals(-34.12,result.getIm());
+    }
+
     @Test //parte reale positiva con segno e parte immaginaria negativa
     public void testParse4() throws SyntaxException{
         String instance = "+4-5j";
         ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
         assertEquals(4,result.getRe());
         assertEquals(-5,result.getIm());
+    }
+
+    @Test //parte reale positiva con segno e parte immaginaria negativa con numero decimale
+    public void testParse4B() throws SyntaxException{
+        String instance = "+2.4-34.12j";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(2.4,result.getRe());
+        assertEquals(-34.12,result.getIm());
     }
 
     @Test //parte reale negativa e parte immaginaria positiva
@@ -455,6 +487,14 @@ public class ComplexNumberTest {
         assertEquals(5,result.getIm());
     }
 
+    @Test //parte reale negativa e parte immaginaria positiva con numero decimale
+    public void testParse5B() throws SyntaxException{
+        String instance = "-2.4+34.12j";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(-2.4,result.getRe());
+        assertEquals(34.12,result.getIm());
+    }
+
     @Test //parte reale negativa e parte immaginaria negativa
     public void testParse6() throws SyntaxException{
         String instance = "-4-5j";
@@ -463,11 +503,27 @@ public class ComplexNumberTest {
         assertEquals(-5,result.getIm());
     }
 
+    @Test //parte reale negativa e parte immaginaria negativa con numero decimale
+    public void testParse6B() throws SyntaxException{
+        String instance = "-2.4-34.12j";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(-2.4,result.getRe());
+        assertEquals(-34.12,result.getIm());
+    }
+
     @Test //parte reale positiva e parte immaginaria nulla
     public void testParse7() throws SyntaxException{
         String instance = "4";
         ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
         assertEquals(4,result.getRe());
+        assertEquals(0,result.getIm());
+    }
+
+    @Test //parte reale positiva e parte immaginaria nulla con numero decimale
+    public void testParse7B() throws SyntaxException{
+        String instance = "4.537";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(4.537,result.getRe());
         assertEquals(0,result.getIm());
     }
 
@@ -479,11 +535,27 @@ public class ComplexNumberTest {
         assertEquals(0,result.getIm());
     }
 
+    @Test //parte reale positiva con segno e parte immaginaria nulla con numero decimale
+    public void testParse8B() throws SyntaxException{
+        String instance = "+4.537";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(4.537,result.getRe());
+        assertEquals(0,result.getIm());
+    }
+
     @Test //parte reale negativa e parte immaginaria nulla
     public void testParse9() throws SyntaxException{
         String instance = "-4";
         ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
         assertEquals(-4,result.getRe());
+        assertEquals(0,result.getIm());
+    }
+
+    @Test //parte reale negativa e parte immaginaria nulla con numero decimale
+    public void testParse9B() throws SyntaxException{
+        String instance = "-4.537";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(-4.537,result.getRe());
         assertEquals(0,result.getIm());
     }
 
@@ -495,12 +567,28 @@ public class ComplexNumberTest {
         assertEquals(5,result.getIm());
     }
 
+    @Test //parte reale nulla e parte immaginaria positiva con numero decimale
+    public void testParse10B() throws SyntaxException{
+        String instance = "5.85j";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(0,result.getRe());
+        assertEquals(5.85,result.getIm());
+    }
+
     @Test //parte reale nulla e parte immaginaria positiva con j posta prima
     public void testParse11() throws SyntaxException{
         String instance = "j5";
         ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
         assertEquals(0,result.getRe());
         assertEquals(5,result.getIm());
+    }
+
+    @Test //parte reale nulla e parte immaginaria positiva con j posta prima e numero decimale
+    public void testParse11B() throws SyntaxException{
+        String instance = "j5.85";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(0,result.getRe());
+        assertEquals(5.85,result.getIm());
     }
 
     @Test //parte reale nulla e parte immaginaria positiva con segno
@@ -511,12 +599,28 @@ public class ComplexNumberTest {
         assertEquals(5,result.getIm());
     }
 
-    @Test //parte reale nulla e parte immaginaria positiva con  segno j posta prima
+    @Test //parte reale nulla e parte immaginaria positiva con segno e numero decimale
+    public void testParse12B() throws SyntaxException{
+        String instance = "+5.85j";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(0,result.getRe());
+        assertEquals(5.85,result.getIm());
+    }
+
+    @Test //parte reale nulla e parte immaginaria positiva con segno j posta prima
     public void testParse13() throws SyntaxException{
         String instance = "+j5";
         ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
         assertEquals(0,result.getRe());
         assertEquals(5,result.getIm());
+    }
+
+    @Test //parte reale nulla e parte immaginaria positiva con segno j posta prima e numero decimale
+    public void testParse13B() throws SyntaxException{
+        String instance = "+j5.85";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(0,result.getRe());
+        assertEquals(5.85,result.getIm());
     }
 
     @Test //parte reale nulla e parte immaginaria negativa
@@ -527,12 +631,28 @@ public class ComplexNumberTest {
         assertEquals(-5,result.getIm());
     }
 
+    @Test //parte reale nulla e parte immaginaria negativa con numero decimale
+    public void testParse14B() throws SyntaxException{
+        String instance = "-5.85j";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(0,result.getRe());
+        assertEquals(-5.85,result.getIm());
+    }
+
     @Test //parte reale nulla e parte immaginaria negativa con j posta prima
     public void testParse15() throws SyntaxException{
         String instance = "-j5";
         ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
         assertEquals(0,result.getRe());
         assertEquals(-5,result.getIm());
+    }
+
+    @Test //parte reale nulla e parte immaginaria negativa con j posta prima e numero decimale
+    public void testParse15B() throws SyntaxException{
+        String instance = "-j5.85";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(0,result.getRe());
+        assertEquals(-5.85,result.getIm());
     }
     
     @Test //parte immaginaria nulla con segno -
