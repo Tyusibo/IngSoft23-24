@@ -33,7 +33,6 @@ public class CalculatorController {
     private void enterHandler(ActionEvent e) throws VariableNotInitializedException, LessThanOneElementException{
         String input = outputview.getText();
 
-        // enter rocco
         try {
             if (!input.isEmpty()) {
                 if(input.equals("+")){
@@ -76,21 +75,18 @@ public class CalculatorController {
                 showStackContent();
             }
         }catch(LessThanTwoElementsException ex){
-            String errMessage = ex.getMessage();
-            outputview.setText(errMessage);
+            outputview.setText(ex.getMessage());
         }catch(LessThanOneElementException ex){
-            String errMessage = ex.getMessage();
-            outputview.setText(errMessage);
+            outputview.setText(ex.getMessage());
         }catch(VariableNotInitializedException ex){
-            String err = ex.getMessage();
-            outputview.setText(err);
+            outputview.setText(ex.getMessage());
         }catch(SyntaxException ex){
-            String err = ex.getMessage();
-            outputview.setText(err);
+            outputview.setText(ex.getMessage());
+        }catch(ArithmeticException ex){
+            outputview.setText("Divisione per 0");
         }
         
     }
-
 
     @FXML
     private void switchToVariables(ActionEvent e){
@@ -138,8 +134,7 @@ public class CalculatorController {
             calculator.swap();
             showStackContent();
         }catch(LessThanTwoElementsException ex){
-            String errMessage = ex.getMessage();
-            outputview.setText(errMessage);
+            outputview.setText(ex.getMessage());
         }
     }
     @FXML
@@ -148,8 +143,7 @@ public class CalculatorController {
             calculator.dup();
             showStackContent();
         }catch(LessThanOneElementException ex){
-            String errMessage = ex.getMessage();
-            outputview.setText(errMessage);
+            outputview.setText(ex.getMessage());
         }
     }
     @FXML
@@ -158,8 +152,7 @@ public class CalculatorController {
             calculator.over();
             showStackContent();
         }catch(LessThanTwoElementsException ex){
-            String errMessage = ex.getMessage();
-            outputview.setText(errMessage);
+            outputview.setText(ex.getMessage());
         }
     }
     @FXML

@@ -53,9 +53,16 @@ public class Calculator {
     public ComplexNumber divCalculator() throws LessThanTwoElementsException{
         if (stack.size()<2)
             throw new LessThanTwoElementsException();
-        ComplexNumber w, result;
+        ComplexNumber z,w, result;
         w = stack.pop();
-        result = stack.pop().div(w);
+        z = stack.pop();
+        try{
+            result=z.div(w);
+        } catch(ArithmeticException ex){
+            stack.push(z);
+            stack.push(w);
+            throw new ArithmeticException();
+        }
         stack.push(result);
         return result;
     }
