@@ -134,7 +134,7 @@ public class VariablesTest {
         Variables instance = new Variables(); 
         assertThrows(VariableNotInitializedException.class, () -> {
             instance.decrease(c,z);
-     }); 
-    
+  });
+
 }
 }

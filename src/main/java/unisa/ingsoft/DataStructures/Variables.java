@@ -38,5 +38,5 @@ public class Variables implements VariablesOperations<ComplexNumber>{
     public ComplexNumber decrease(Character c,ComplexNumber z) throws VariableNotInitializedException{
         this.put(c,(this.get(c).sub(z)));  //l'eccezione sale al chiamante???
         return this.get(c);
-    }
+    }
 }
