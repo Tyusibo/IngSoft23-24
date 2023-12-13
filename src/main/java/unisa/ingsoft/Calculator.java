@@ -127,16 +127,8 @@ public class Calculator {
     public void over() throws LessThanTwoElementsException{stack.over();}
 
     public ComplexNumber[] stackToArray(){
-        int size = Math.min(stack.size(), 12); // minimo tra stack.size e 12
-        ComplexNumber[] result = new ComplexNumber[size];    
-        
-        for(int i = size - 1; i >= 0; i--){
-            if(!stack.isEmpty()){
-                result[i] = stack.elementAt(i); // Ottieni l'elemento senza rimuoverlo dallo stack
-            }
-        }
-
-        return result;
+        ComplexNumber[] result = new ComplexNumber[stack.size()];    
+        return stack.toArray(result);
     }
 
     
