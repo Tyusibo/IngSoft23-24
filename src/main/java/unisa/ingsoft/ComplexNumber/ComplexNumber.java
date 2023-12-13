@@ -10,6 +10,7 @@ public class ComplexNumber implements Operations<ComplexNumber> {
     private final double re;
     private final double im;  
     //gli attributi sono entrambi final poichè non è prevista la modifica della singola parte reale o immaginaria
+    //le operazioni restituiscono un nuovo ComplexNumber
 
     public ComplexNumber(double re, double im) {
         this.re = re;
@@ -55,7 +56,7 @@ public class ComplexNumber implements Operations<ComplexNumber> {
     public ComplexNumber sqrt() {
         double a=this.getRe(); double b=this.getIm();
         if(a==0 && b==0)
-            return this;
+            return this; //non è necessario creare un nuovo ComplexNumber
         if(b==0){
             return new ComplexNumber(Math.sqrt(a),0);
         }
@@ -103,31 +104,41 @@ public class ComplexNumber implements Operations<ComplexNumber> {
 
         double realPart = 0;
         double imgPart = 0;
-        if(input.matches("^[+-]?[0]?([+-][0]j)?$")){
-            realPart = 0;
-            imgPart = 0;
-        } 
-        else if (input.matches("^[+-]?\\d+(\\.\\d+)?$")){ // Solo parte reale
-            realPart = Double.parseDouble(input);
+        if (input.matches("^[+-]?\\d+(\\.\\d+)?$")){ // Solo parte reale
+            if(!input.matches("^[+-]?0+(.0+)?$")){ //escludo i signed zeros
+                realPart = Double.parseDouble(input);
+            }
         }else if (input.matches("^[+-]?\\d+(\\.\\d+)?j$")){ //Solo parte immaginaria (j alla fine)
-            String imgString = input.replaceAll("j", "");
-            imgPart = Double.parseDouble(imgString);
+            if(!input.matches("^[+-]?0+(.0+)?j$")){
+                String imgString = input.replaceAll("j", "");
+                imgPart = Double.parseDouble(imgString);
+            }
         }else if (input.matches("^[+-]?j\\d+(\\.\\d+)?$")){ //Solo parte immaginaria (j all'inizio)
-            String imgString = input.replaceAll("j", "");
-            imgPart = Double.parseDouble(imgString);
+            if(!input.matches("^[+-]?j0+(.0+)?$")){
+                String imgString = input.replaceAll("j", "");
+                imgPart = Double.parseDouble(imgString);
+            }
         }/*else if (input.matches("[+-]?j")){ //Solo unità immaginaria
             String imgString = input.replaceAll("j", "1");
             imgPart = Double.parseDouble(imgString);*/
         else if (input.matches("^[+-]?\\d+(\\.\\d+)?[+-]{1}\\d+(\\.\\d+)?j$")){ //Numero complesso con parte reale e immaginaria (j alla fine)
             String[] parts = input.split("(?=[+-])");
-            realPart = Double.parseDouble(parts[0]);
-            String imgString = parts[1].replaceAll("j", "");
-            imgPart = Double.parseDouble(imgString);
+            if(!parts[0].matches("^[+-]?0+(.0+)?$")){ //escludo i signed zeros
+                realPart = Double.parseDouble(parts[0]);
+            }
+            if(!parts[1].matches("^[+-]?0+(.0+)?j$")){
+                String imgString = parts[1].replaceAll("j", "");
+                imgPart = Double.parseDouble(imgString);
+            }
         }else if (input.matches("^[+-]?\\d+(\\.\\d+)?[+-]{1}j\\d+(\\.\\d+)?$")){ //Numero complesso con parte reale e immaginaria (j all'inizio)
             String[] parts = input.split("(?=[+-])");
-            realPart = Double.parseDouble(parts[0]);
-            String imgString = parts[1].replaceAll("j", "");
-            imgPart = Double.parseDouble(imgString);
+            if(!parts[0].matches("^[+-]?0+(.0+)?$")){ //escludo i signed zeros
+                realPart = Double.parseDouble(parts[0]);
+            }
+            if(!parts[1].matches("^[+-]?0+(.0+)?j$")){
+                String imgString = parts[1].replaceAll("j", "");
+                imgPart = Double.parseDouble(imgString);
+            }
         }/*else if (input.matches("^[+-]?\\d+(\\.\\d+)?[+-]{1}j$")){ //Numero complesso con parte reale e unità immaginaria
             String[] parts = input.split("(?=[+-])");
             realPart = Double.parseDouble(parts[0]);
