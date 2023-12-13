@@ -257,9 +257,6 @@ public class CalculatorController {
         ComplexNumber[] numbsOnStack = calculator.stackToArray();
         int length = numbsOnStack .length;
 
-        if(length == 0)
-            stackview.setText("");
-        
         if (length<=12){
             for(int i = length-1; i>= 0; i--){
                 content.append(numbsOnStack[i]).append("\n");

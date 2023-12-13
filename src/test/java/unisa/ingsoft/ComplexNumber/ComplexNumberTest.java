@@ -415,7 +415,7 @@ public class ComplexNumberTest {
         assertEquals(0,result.getIm());
     }
 
-    @Test //parte reale nulla e parte immaginaria nulla
+    @Test //parte reale nulla e parte immaginaria nulla omessa
     public void testParse10() throws SyntaxException{
         String instance = "-0";
         ComplexNumber result = ComplexNumber.parseComplexNumber((instance));
@@ -423,7 +423,7 @@ public class ComplexNumberTest {
         assertEquals(0,result.getIm());
     }
 
-    @Test //parte reale nulla e parte immaginaria nulla
+    @Test //parte reale nulla omessa e parte immaginaria nulla
     public void testParse11() throws SyntaxException{
         String instance = "-0j";
         ComplexNumber result = ComplexNumber.parseComplexNumber((instance));
