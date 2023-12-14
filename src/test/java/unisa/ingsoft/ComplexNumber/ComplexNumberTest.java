@@ -392,7 +392,7 @@ double delta=0.001;
     @Test //parte reale positiva e parte immaginaria positiva
     public void testParse() throws SyntaxException{
         String instance = "4+5j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(4,result.getRe());
         assertEquals(5,result.getIm());
     }
@@ -400,7 +400,7 @@ double delta=0.001;
     @Test //parte reale positiva e parte immaginaria positiva con numeri decimali
     public void testParseB() throws SyntaxException{
         String instance = "2.4+34.12j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(2.4,result.getRe());
         assertEquals(34.12,result.getIm());
     }
@@ -408,7 +408,7 @@ double delta=0.001;
     @Test //parte reale positiva con segno e parte immaginaria positiva
     public void testParse2() throws SyntaxException{
         String instance = "+4+5j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(4,result.getRe());
         assertEquals(5,result.getIm());
     }
@@ -416,7 +416,7 @@ double delta=0.001;
     @Test //parte reale positiva con segno e parte immaginaria positiva con numeri decimali
     public void testParse2B() throws SyntaxException{
         String instance = "+2.4+34.12j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(2.4,result.getRe());
         assertEquals(34.12,result.getIm());
     }
@@ -424,7 +424,7 @@ double delta=0.001;
     @Test //parte reale positiva e parte immaginaria negativa
     public void testParse3() throws SyntaxException{
         String instance = "4-5j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(4,result.getRe());
         assertEquals(-5,result.getIm());
     }
@@ -432,7 +432,7 @@ double delta=0.001;
     @Test //parte reale positiva e parte immaginaria negativa con numeri decimali
     public void testParse3B() throws SyntaxException{
         String instance = "2.4-34.12j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(2.4,result.getRe());
         assertEquals(-34.12,result.getIm());
     }
@@ -440,7 +440,7 @@ double delta=0.001;
     @Test //parte reale positiva con segno e parte immaginaria negativa
     public void testParse4() throws SyntaxException{
         String instance = "+4-5j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(4,result.getRe());
         assertEquals(-5,result.getIm());
     }
@@ -448,7 +448,7 @@ double delta=0.001;
     @Test //parte reale positiva con segno e parte immaginaria negativa con numero decimale
     public void testParse4B() throws SyntaxException{
         String instance = "+2.4-34.12j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(2.4,result.getRe());
         assertEquals(-34.12,result.getIm());
     }
@@ -456,7 +456,7 @@ double delta=0.001;
     @Test //parte reale negativa e parte immaginaria positiva
     public void testParse5() throws SyntaxException{
         String instance = "-4+5j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(-4,result.getRe());
         assertEquals(5,result.getIm());
     }
@@ -464,7 +464,7 @@ double delta=0.001;
     @Test //parte reale negativa e parte immaginaria positiva con numero decimale
     public void testParse5B() throws SyntaxException{
         String instance = "-2.4+34.12j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(-2.4,result.getRe());
         assertEquals(34.12,result.getIm());
     }
@@ -472,7 +472,7 @@ double delta=0.001;
     @Test //parte reale negativa e parte immaginaria negativa
     public void testParse6() throws SyntaxException{
         String instance = "-4-5j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(-4,result.getRe());
         assertEquals(-5,result.getIm());
     }
@@ -480,7 +480,7 @@ double delta=0.001;
     @Test //parte reale negativa e parte immaginaria negativa con numero decimale
     public void testParse6B() throws SyntaxException{
         String instance = "-2.4-34.12j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(-2.4,result.getRe());
         assertEquals(-34.12,result.getIm());
     }
@@ -488,7 +488,7 @@ double delta=0.001;
     @Test //parte reale positiva e parte immaginaria nulla
     public void testParse7() throws SyntaxException{
         String instance = "4";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(4,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -496,7 +496,7 @@ double delta=0.001;
     @Test //parte reale positiva e parte immaginaria nulla con numero decimale
     public void testParse7B() throws SyntaxException{
         String instance = "4.537";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(4.537,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -504,7 +504,7 @@ double delta=0.001;
     @Test //parte reale positiva con segno e parte immaginaria nulla
     public void testParse8() throws SyntaxException{
         String instance = "+4";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(4,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -512,7 +512,7 @@ double delta=0.001;
     @Test //parte reale positiva con segno e parte immaginaria nulla con numero decimale
     public void testParse8B() throws SyntaxException{
         String instance = "+4.537";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(4.537,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -520,7 +520,7 @@ double delta=0.001;
     @Test //parte reale negativa e parte immaginaria nulla
     public void testParse9() throws SyntaxException{
         String instance = "-4";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(-4,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -528,7 +528,7 @@ double delta=0.001;
     @Test //parte reale negativa e parte immaginaria nulla con numero decimale
     public void testParse9B() throws SyntaxException{
         String instance = "-4.537";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(-4.537,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -536,7 +536,7 @@ double delta=0.001;
     @Test //parte reale nulla e parte immaginaria positiva
     public void testParse10() throws SyntaxException{
         String instance = "5j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(5,result.getIm());
     }
@@ -544,7 +544,7 @@ double delta=0.001;
     @Test //parte reale nulla e parte immaginaria positiva con numero decimale
     public void testParse10B() throws SyntaxException{
         String instance = "5.85j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(5.85,result.getIm());
     }
@@ -552,7 +552,7 @@ double delta=0.001;
     @Test //parte reale nulla e parte immaginaria positiva con j posta prima
     public void testParse11() throws SyntaxException{
         String instance = "j5";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(5,result.getIm());
     }
@@ -560,7 +560,7 @@ double delta=0.001;
     @Test //parte reale nulla e parte immaginaria positiva con j posta prima e numero decimale
     public void testParse11B() throws SyntaxException{
         String instance = "j5.85";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(5.85,result.getIm());
     }
@@ -568,7 +568,7 @@ double delta=0.001;
     @Test //parte reale nulla e parte immaginaria positiva con segno
     public void testParse12() throws SyntaxException{
         String instance = "+5j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(5,result.getIm());
     }
@@ -576,7 +576,7 @@ double delta=0.001;
     @Test //parte reale nulla e parte immaginaria positiva con segno e numero decimale
     public void testParse12B() throws SyntaxException{
         String instance = "+5.85j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(5.85,result.getIm());
     }
@@ -584,7 +584,7 @@ double delta=0.001;
     @Test //parte reale nulla e parte immaginaria positiva con segno j posta prima
     public void testParse13() throws SyntaxException{
         String instance = "+j5";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(5,result.getIm());
     }
@@ -592,7 +592,7 @@ double delta=0.001;
     @Test //parte reale nulla e parte immaginaria positiva con segno j posta prima e numero decimale
     public void testParse13B() throws SyntaxException{
         String instance = "+j5.85";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(5.85,result.getIm());
     }
@@ -600,7 +600,7 @@ double delta=0.001;
     @Test //parte reale nulla e parte immaginaria negativa
     public void testParse14() throws SyntaxException{
         String instance = "-5j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(-5,result.getIm());
     }
@@ -608,7 +608,7 @@ double delta=0.001;
     @Test //parte reale nulla e parte immaginaria negativa con numero decimale
     public void testParse14B() throws SyntaxException{
         String instance = "-5.85j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(-5.85,result.getIm());
     }
@@ -616,7 +616,7 @@ double delta=0.001;
     @Test //parte reale nulla e parte immaginaria negativa con j posta prima
     public void testParse15() throws SyntaxException{
         String instance = "-j5";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(-5,result.getIm());
     }
@@ -624,7 +624,7 @@ double delta=0.001;
     @Test //parte reale nulla e parte immaginaria negativa con j posta prima e numero decimale
     public void testParse15B() throws SyntaxException{
         String instance = "-j5.85";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(-5.85,result.getIm());
     }
@@ -632,7 +632,7 @@ double delta=0.001;
     @Test //parte immaginaria nulla con segno -
     public void testParse16() throws SyntaxException{
         String instance = "27.25-0j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(27.25,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -640,7 +640,7 @@ double delta=0.001;
     @Test //parte reale nulla con segno -
     public void testParse17() throws SyntaxException{
         String instance = "-0-84.346j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(-84.346,result.getIm());
     }
@@ -648,7 +648,7 @@ double delta=0.001;
     @Test //parte reale nulla con segno - e parte immaginaria nulla con segno -
     public void testParse18() throws SyntaxException{
         String instance = "-0-0j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -656,7 +656,7 @@ double delta=0.001;
     @Test //parte reale nulla con segno - e parte immaginaria nulla omessa
     public void testParse19() throws SyntaxException{
         String instance = "-0";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -664,7 +664,7 @@ double delta=0.001;
     @Test //parte reale nulla omessa e parte immaginaria nulla con segno -
     public void testParse20() throws SyntaxException{
         String instance = "-0j";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -673,7 +673,7 @@ double delta=0.001;
     public void testParse21() throws SyntaxException{
         String instance = ".5";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
    
@@ -681,7 +681,7 @@ double delta=0.001;
     public void testParse22() throws SyntaxException{
         String instance = "j";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -689,7 +689,7 @@ double delta=0.001;
     public void testParse23() throws SyntaxException{
         String instance = "4+j";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -697,7 +697,7 @@ double delta=0.001;
     public void testParse24() throws SyntaxException{
         String instance = "-4+5j3";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -705,7 +705,7 @@ double delta=0.001;
     public void testParse25() throws SyntaxException{
         String instance = "-4+-53j";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -713,7 +713,7 @@ double delta=0.001;
     public void testParse26() throws SyntaxException{
         String instance = "-+14.1+9.3j";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -721,7 +721,7 @@ double delta=0.001;
     public void testParse27() throws SyntaxException{
         String instance = "-+14.1++9.3j";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -729,7 +729,7 @@ double delta=0.001;
     public void testParse28() throws SyntaxException{
         String instance = "++-23.34";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -737,7 +737,7 @@ double delta=0.001;
     public void testParse29() throws SyntaxException{
         String instance = "++-23.34j";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -745,7 +745,7 @@ double delta=0.001;
     public void testParse30() throws SyntaxException{
         String instance = "8.24+368..1j";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -753,7 +753,7 @@ double delta=0.001;
     public void testParse31() throws SyntaxException{
         String instance = "8..24+368.1j";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -761,7 +761,7 @@ double delta=0.001;
     public void testParse32() throws SyntaxException{
         String instance = "8..24+368..1j";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -769,7 +769,7 @@ double delta=0.001;
     public void testParse33() throws SyntaxException{
         String instance = "35..93";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -777,7 +777,7 @@ double delta=0.001;
     public void testParse34() throws SyntaxException{
         String instance = "35..93j";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -785,7 +785,7 @@ double delta=0.001;
     public void testParse35() throws SyntaxException{
         String instance = "457.12-j348.61j";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
@@ -793,7 +793,7 @@ double delta=0.001;
     public void testParse36() throws SyntaxException{
         String instance = "16j.8j";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
     
@@ -801,14 +801,14 @@ double delta=0.001;
     public void testParse37() throws SyntaxException{
         String instance = "";
         assertThrows(SyntaxException.class, () -> {
-            ComplexNumber.parseComplexNumber(instance);
+            ComplexNumber.parse(instance);
         });
     }
 
     @Test //stringa troppo grande (dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
     public void testParse38() throws SyntaxException{
         String instance = "1797693134862315708145274237317043567980705675258449965989174768031572607800285387605895586327668781715404589535143824642343213268894641827684675467035375169860499105765512820762454900903893289440758685084551339423045832369032229481658085593321233482747978262041447231687381771809192998812504040261841299999999999999";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(Double.POSITIVE_INFINITY,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -816,7 +816,7 @@ double delta=0.001;
     @Test //stringa troppo grande ma non abbastanza per infinity(dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
     public void testParse39() throws SyntaxException{
         String instance = "179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180915399881250404026184129999999";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(Double.MAX_VALUE,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -824,7 +824,7 @@ double delta=0.001;
     @Test //stringa troppo grande negativa (dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
     public void testParse40() throws SyntaxException{
         String instance = "-1797693134862315708145274237317043567980705675258449965989174768031572607800285387605895586327668781715404589535143824642343213268894641827684675467035375169860499105765512820762454900903893289440758685084551339423045832369032229481658085593321233482747978262041447231687381771809192998812504040261841299999999999999";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(Double.NEGATIVE_INFINITY,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -832,7 +832,7 @@ double delta=0.001;
     @Test //stringa troppo grande negativa ma non abbastanza per negative infinity(dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
     public void testParse41() throws SyntaxException{
         String instance = "-179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180915399881250404026184129999989";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(-1*(Double.MAX_VALUE),result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -840,7 +840,7 @@ double delta=0.001;
     @Test //stringa troppo grande che rappresenta un numero molto piccolo (dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
     public void testParse42() throws SyntaxException{
         String instance = "0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000025";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(Double.MIN_VALUE,result.getRe());
         assertEquals(0,result.getIm());
     }
@@ -848,7 +848,7 @@ double delta=0.001;
     @Test //stringa troppo grande che rappresenta un numero troppo piccolo(dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
     public void testParse43() throws SyntaxException{
         String instance = "0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000025";
-        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(0,result.getIm());
     }
