@@ -804,4 +804,29 @@ double delta=0.001;
             ComplexNumber.parseComplexNumber(instance);
         });
     }
+
+    @Test //stringa troppo grande (dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
+    public void testParse38() throws SyntaxException{
+        String instance = "1797693134862315708145274237317043567980705675258449965989174768031572607800285387605895586327668781715404589535143824642343213268894641827684675467035375169860499105765512820762454900903893289440758685084551339423045832369032229481658085593321233482747978262041447231687381771809192998812504040261841299999999999999";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(Double.POSITIVE_INFINITY,result.getRe());
+        assertEquals(0,result.getIm());
+    }
+
+    @Test //stringa troppo grande ma non abbastanza per infinity(dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
+    public void testParse39() throws SyntaxException{
+        String instance = "179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180915399881250404026184129999999";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(Double.MAX_VALUE,result.getRe());
+        assertEquals(0,result.getIm());
+    }
+
+    @Test //stringa troppo grande negativa (dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
+    public void testParse40() throws SyntaxException{
+        String instance = "-1797693134862315708145274237317043567980705675258449965989174768031572607800285387605895586327668781715404589535143824642343213268894641827684675467035375169860499105765512820762454900903893289440758685084551339423045832369032229481658085593321233482747978262041447231687381771809192998812504040261841299999999999999";
+        ComplexNumber result = ComplexNumber.parseComplexNumber(instance);
+        assertEquals(Double.NEGATIVE_INFINITY,result.getRe());
+        assertEquals(0,result.getIm());
+    }
+
 }
