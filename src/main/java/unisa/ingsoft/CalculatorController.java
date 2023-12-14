@@ -1,10 +1,13 @@
 package unisa.ingsoft;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.util.Duration;
 import unisa.ingsoft.ComplexNumber.ComplexNumber;
 import unisa.ingsoft.Exceptions.LessThanOneElementException;
 import unisa.ingsoft.Exceptions.LessThanTwoElementsException;
@@ -21,11 +24,14 @@ public class CalculatorController {
     @FXML
     private Label stackview;
 
+    private Font originalFont;
+
     private Calculator calculator;
 
     public void initialize() {
         varGridPane.setVisible(false); // Imposta il setVisible a false all'avvio
         calculator = new Calculator();
+        originalFont = outputview.getFont();
     }
 
 
@@ -75,14 +81,18 @@ public class CalculatorController {
                 showStackContent();
             }
         }catch(LessThanTwoElementsException ex){
+            outputview.setFont(new Font(18));
             outputview.setText(ex.getMessage());
         }catch(LessThanOneElementException ex){
+            outputview.setFont(new Font(18));
             outputview.setText(ex.getMessage());
         }catch(VariableNotInitializedException ex){
+            outputview.setFont(new Font(18));
             outputview.setText(ex.getMessage());
         }catch(SyntaxException ex){
             outputview.setText(ex.getMessage());
         }catch(ArithmeticException ex){
+            outputview.setFont(new Font(23));
             outputview.setText("Divisione per 0");
         }
         
@@ -101,6 +111,7 @@ public class CalculatorController {
     @FXML
     private void buttonHandler (ActionEvent e){
         String buttontxt = ((Button) e.getSource()).getText();
+        outputview.setFont(originalFont);
 
         if(outputview.getText().equals("")){
             outputview.setText(buttontxt);
@@ -134,6 +145,7 @@ public class CalculatorController {
             calculator.swap();
             showStackContent();
         }catch(LessThanTwoElementsException ex){
+            outputview.setFont(new Font(18));
             outputview.setText(ex.getMessage());
         }
     }
@@ -143,8 +155,10 @@ public class CalculatorController {
             calculator.dup();
             showStackContent();
         }catch(LessThanOneElementException ex){
+            outputview.setFont(new Font(18));
             outputview.setText(ex.getMessage());
         }
+        
     }
     @FXML
     private void overHandler(ActionEvent e){
@@ -152,6 +166,7 @@ public class CalculatorController {
             calculator.over();
             showStackContent();
         }catch(LessThanTwoElementsException ex){
+            outputview.setFont(new Font(18));
             outputview.setText(ex.getMessage());
         }
     }
