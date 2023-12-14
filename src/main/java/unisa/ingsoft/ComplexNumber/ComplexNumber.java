@@ -4,8 +4,6 @@ import java.util.Locale;
 
 import unisa.ingsoft.Exceptions.SyntaxException;
 
-//import Exceptions.SyntaxException;
-
 public class ComplexNumber implements Operations<ComplexNumber> {
     private final double re;
     private final double im;  
@@ -80,20 +78,20 @@ public class ComplexNumber implements Operations<ComplexNumber> {
         String ree="",imm="";
         String[] partiRe = String.valueOf(re).split("\\.");
         if(partiRe[1].length()>3)
-            ree=String.format(Locale.US,"%.3f", re);
+            ree=String.format(Locale.US,"%.3f", re); //arrotonda a 3 cifre dopo la virgola
         else
-            ree=((re%1.0!=0) ? String.valueOf(re): String.format(Locale.US,"%.0f", re));
+            ree=((re%1.0!=0) ? String.valueOf(re): String.format(Locale.US,"%.0f", re)); //mostra il numero per intero, togliendo 0 non necessari
 
         String[] partiIm = String.valueOf(im).split("\\.");
         if(partiIm[1].length()>3)
-            imm=String.format(Locale.US,"%.3f", im);
+            imm=String.format(Locale.US,"%.3f", im); //arrotonda a 3 cifre dopo la virgola
         else
-            imm=((im%1.0!=0) ? String.valueOf(im): String.format(Locale.US,"%.0f", im));
+            imm=((im%1.0!=0) ? String.valueOf(im): String.format(Locale.US,"%.0f", im)); //mostra il numero per intero, togliendo 0 non necessari
 
         if (im==0) 
             return ree;
         if (re==0)
-            return imm+"j";
+            return imm + "j";
         if(im>0)
             return ree + "+" + imm + "j";
         else
