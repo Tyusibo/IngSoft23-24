@@ -144,7 +144,7 @@
          <children>
             <Label fx:id="outputview" nodeOrientation="RIGHT_TO_LEFT" prefHeight="91.0" prefWidth="385.0" styleClass="labelouputview">
                <font>
-                  <Font size="48.0" />
+                  <Font size="36.0" />
                </font>
             </Label>
          </children>
