@@ -10,8 +10,8 @@ import unisa.ingsoft.Exceptions.VariableNotInitializedException;
 
 public class Calculator {
 
-    private CustomStack<ComplexNumber> stack;
-    private Variables vars;
+    private final CustomStack<ComplexNumber> stack;
+    private final Variables vars;
 
     public Calculator(){
         stack = new CustomStack<>();
@@ -19,7 +19,7 @@ public class Calculator {
     }
 
     public void insert(String number) throws SyntaxException{
-        ComplexNumber num = ComplexNumber.parseComplexNumber(number);
+        ComplexNumber num = ComplexNumber.parse(number);
         stack.push(num);
     }
 
@@ -50,7 +50,7 @@ public class Calculator {
         stack.push(result);
         return result;
     }
-    public ComplexNumber divCalculator() throws LessThanTwoElementsException{
+    public ComplexNumber divCalculator() throws LessThanTwoElementsException, ArithmeticException{
         if (stack.size()<2)
             throw new LessThanTwoElementsException();
         ComplexNumber z,w, result;
@@ -92,50 +92,45 @@ public class Calculator {
         return stack.push(vars.get(c));
     }
     public ComplexNumber saveOnVariable(Character c) throws LessThanOneElementException, VariableNotInitializedException{
-        if(!stack.isEmpty()){
-            vars.put(c, stack.pop());
-            return vars.get(c);
-        }else
+        if(stack.isEmpty()) 
             throw new LessThanOneElementException();
+        vars.put(c, stack.pop());
+        return vars.get(c);
         
     }
     public ComplexNumber increaseVariable(Character c)throws VariableNotInitializedException, LessThanOneElementException{
-        if(!stack.isEmpty()){
+        if(stack.isEmpty())
+            throw new LessThanOneElementException();
         ComplexNumber elem=stack.pop();
         try{
             return vars.increase(c, elem);
-        } catch(VariableNotInitializedException w){
+        }catch(VariableNotInitializedException w){
             stack.push(elem);
             throw new VariableNotInitializedException();
-        }
-        }else
-            throw new LessThanOneElementException();
+        }     
     }
 
     public ComplexNumber decreaseVariable(Character c)throws VariableNotInitializedException, LessThanOneElementException{
-        if(!stack.isEmpty()){
+        if(stack.isEmpty())
+            throw new LessThanOneElementException();
         ComplexNumber elem=stack.pop();
         try{
             return vars.decrease(c, elem);
-        } catch(VariableNotInitializedException w){
+        }catch(VariableNotInitializedException w){
             stack.push(elem);
             throw new VariableNotInitializedException();
-        }
-        }else
-            throw new LessThanOneElementException();
+        } 
     }
+    
+    public ComplexNumber[] stackToArray(){
+        ComplexNumber[] result = new ComplexNumber[stack.size()];    
+        return stack.toArray(result);
+    } 
 
     public void clear(){stack.clear();}
     public void drop(){stack.drop();}
     public void swap() throws LessThanTwoElementsException{stack.swap();}
     public void dup() throws LessThanOneElementException{stack.dup();}
-    public void over() throws LessThanTwoElementsException{stack.over();}
-
-    public ComplexNumber[] stackToArray(){
-        ComplexNumber[] result = new ComplexNumber[stack.size()];    
-        return stack.toArray(result);
-    }
-
-    
+    public void over() throws LessThanTwoElementsException{stack.over();} 
 
 }

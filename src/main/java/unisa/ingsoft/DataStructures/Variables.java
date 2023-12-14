@@ -23,20 +23,20 @@ public class Variables implements VariablesOperations<ComplexNumber>{
     }
     
     @Override
-    public ComplexNumber put(Character c,ComplexNumber z){  //unica che può inizializzare
+    public ComplexNumber put(Character c,ComplexNumber z){  
         return variables.put(c,z);
     }
     
    
     @Override
     public ComplexNumber increase(Character c, ComplexNumber z) throws VariableNotInitializedException{
-        this.put(c,(this.get(c).sum(z)));       //l'eccezione sale al chiamante???
+        this.put(c,(this.get(c).sum(z)));       
         return this.get(c);
     }
     
     @Override
     public ComplexNumber decrease(Character c,ComplexNumber z) throws VariableNotInitializedException{
-        this.put(c,(this.get(c).sub(z)));  //l'eccezione sale al chiamante???
+        this.put(c,(this.get(c).sub(z)));  
         return this.get(c);
     }
 }

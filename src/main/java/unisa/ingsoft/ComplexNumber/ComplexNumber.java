@@ -100,7 +100,7 @@ public class ComplexNumber implements Operations<ComplexNumber> {
             return ree + imm + "j";
     }
 
-    public static ComplexNumber parseComplexNumber(String input) throws SyntaxException{
+    public static ComplexNumber parse(String input) throws SyntaxException{
 
         double realPart = 0;
         double imgPart = 0;

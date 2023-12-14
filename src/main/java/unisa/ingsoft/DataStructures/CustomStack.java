@@ -34,8 +34,7 @@ public class CustomStack<E> extends Stack<E> implements StackOperations{
         if(size()<1)
             throw new LessThanOneElementException();
         
-        E z=peek();
-        push(z);
+        push(peek());
     }
     public void over() throws LessThanTwoElementsException{
         if(size()<2)

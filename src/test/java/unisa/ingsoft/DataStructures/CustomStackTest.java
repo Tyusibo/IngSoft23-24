@@ -34,13 +34,13 @@ double delta=0.001;
     */
     @Test  //caso generale
     public void testDrop() {
-        instance.push(new ComplexNumber(1,1));
-        instance.push(new ComplexNumber(2,2));
+        instance.push(new ComplexNumber(1.1,1.1)); 
+        instance.push(new ComplexNumber(2.2,2.2));
         instance.drop();
         assertEquals(1,instance.size());
         ComplexNumber result=instance.peek();
-        assertEquals(1,result.getRe(), delta);
-        assertEquals(1,result.getIm(), delta);    
+        assertEquals(1.1,result.getRe(), delta);
+        assertEquals(1.1,result.getIm(), delta);    
         instance.drop();
         assertTrue(instance.isEmpty());
     }
@@ -56,7 +56,8 @@ double delta=0.001;
      */
     @Test  //caso generale
     public void testClear() {
-        instance.push(new ComplexNumber(1,1)); 
+        instance.push(new ComplexNumber(1.1,1.1)); 
+        instance.push(new ComplexNumber(2.2,2.2)); 
         instance.clear();
         assertTrue(instance.isEmpty());
     }
@@ -72,21 +73,21 @@ double delta=0.001;
      */
     @Test  //caso generale
     public void testSwap() throws LessThanTwoElementsException {
-        instance.push(new ComplexNumber(1,1));
-        instance.push(new ComplexNumber(2,2));
+        instance.push(new ComplexNumber(1.1,1.1)); 
+        instance.push(new ComplexNumber(2.2,2.2));
         instance.swap();
         assertEquals(2,instance.size());
         ComplexNumber result1=instance.pop();
-        assertEquals(1,result1.getRe(), delta);
-        assertEquals(1,result1.getIm(), delta); 
+        assertEquals(1.1,result1.getRe(), delta);
+        assertEquals(1.1,result1.getIm(), delta); 
         ComplexNumber result2=instance.pop();
-        assertEquals(2,result2.getRe(), delta);
-        assertEquals(2,result2.getIm(), delta);
+        assertEquals(2.2,result2.getRe(), delta);
+        assertEquals(2.2,result2.getIm(), delta);
     }
     
     @Test  //caso con 1 elemento
     public void testSwap2() throws LessThanTwoElementsException{
-        instance.push(new ComplexNumber(1,1));
+        instance.push(new ComplexNumber(1.1,1.1));
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.swap();
      });
@@ -104,15 +105,16 @@ double delta=0.001;
      */
     @Test //caso generale
     public void testDup() throws LessThanOneElementException {
-        instance.push(new ComplexNumber(1,1));
+        instance.push(new ComplexNumber(1.1,1.1));
+        assertEquals(1,instance.size());
         instance.dup();
         assertEquals(2,instance.size());
         ComplexNumber result2=instance.pop();
-        assertEquals(1,result2.getRe(), delta);
-        assertEquals(1,result2.getIm(), delta); 
+        assertEquals(1.1,result2.getRe(), delta);
+        assertEquals(1.1,result2.getIm(), delta); 
         ComplexNumber result1=instance.pop();
-        assertEquals(1,result1.getRe(), delta);
-        assertEquals(1,result1.getIm(), delta);        
+        assertEquals(1.1,result1.getRe(), delta);
+        assertEquals(1.1,result1.getIm(), delta);        
     }
     
     @Test //caso con 0 elementi
@@ -127,23 +129,24 @@ double delta=0.001;
      */
     @Test  //caso generale
     public void testOver() throws LessThanTwoElementsException {
-        instance.push(new ComplexNumber(1,1));
-        instance.push(new ComplexNumber(2,2));
+        instance.push(new ComplexNumber(1.1,1.1));
+        instance.push(new ComplexNumber(2.2,2.2));
+        assertEquals(2,instance.size());
         instance.over();
         assertEquals(3,instance.size());
         ComplexNumber result1=instance.pop();
-        assertEquals(1,result1.getRe(), delta);
-        assertEquals(1,result1.getIm(), delta); 
+        assertEquals(1.1,result1.getRe(), delta);
+        assertEquals(1.1,result1.getIm(), delta); 
         ComplexNumber result2=instance.pop();
-        assertEquals(2,result2.getRe(), delta);
-        assertEquals(2,result2.getIm(), delta); 
+        assertEquals(2.2,result2.getRe(), delta);
+        assertEquals(2.2,result2.getIm(), delta); 
         ComplexNumber result3=instance.pop();
-        assertEquals(1,result3.getRe(), delta);
-        assertEquals(1,result3.getIm(), delta); 
+        assertEquals(1.1,result3.getRe(), delta);
+        assertEquals(1.1,result3.getIm(), delta); 
     }
     @Test  //caso con 1 elemento
     public void testOver2() throws LessThanTwoElementsException {
-        instance.push(new ComplexNumber(1,1));
+        instance.push(new ComplexNumber(1.1,1.1));
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.over();
      }); 
