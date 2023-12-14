@@ -19,7 +19,7 @@ public class Variables implements VariablesOperations<ComplexNumber>{
         ComplexNumber w=variables.get(c);
         if(w==null)
             throw new VariableNotInitializedException();
-        return w;  //la push verrà fatta dalla calcolatricia
+        return w;
     }
     
     @Override
