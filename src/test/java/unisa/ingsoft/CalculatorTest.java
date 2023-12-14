@@ -32,23 +32,22 @@ double delta=0.001;
     public void tearDown() {
     }
 
-    //CASI DI ECCEZIONE PER SQRT E DIV??????
     /**
      * Test of stackToArray method, of class Calculator.
      */
     @Test  //caso generale
     public void testStackToArray() throws SyntaxException {
-        instance.insert("4+3j");
-        instance.insert("-5+8j");
+        instance.insert("4.4+3.4j");
+        instance.insert("-5.6+8.6j");
         instance.insert("0");
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(3,result.length);
-        assertEquals(4,result[0].getRe(), delta);
-        assertEquals(3,result[0].getIm(), delta);
-        assertEquals(-5,result[1].getRe(), delta);
-        assertEquals(8,result[1].getIm(), delta);
-        assertEquals(0,result[2].getRe(), delta);
-        assertEquals(0,result[2].getIm(), delta);
+        assertEquals(4.4,result[0].getRe(), delta);
+        assertEquals(3.4,result[0].getIm(), delta);
+        assertEquals(-5.6,result[1].getRe(), delta);
+        assertEquals(8.6,result[1].getIm(), delta);
+        assertEquals(0.0,result[2].getRe(), delta);
+        assertEquals(0.0,result[2].getIm(), delta);
     }
     
     @Test  //caso stack vuoto
@@ -62,16 +61,15 @@ double delta=0.001;
      */
     @Test  //caso generale
     public void testInsert() throws SyntaxException{
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
-        assertEquals(4,result[0].getRe(), delta);
-        assertEquals(3,result[0].getIm(), delta);
+        assertEquals(4.4,result[0].getRe(), delta);
+        assertEquals(3.4,result[0].getIm(), delta);
     }
     
     @Test  //Formato errato
     public void testInsert2() throws SyntaxException{
-        Calculator instance = new Calculator();
         assertThrows(SyntaxException.class, () -> {
             instance.insert("4+3+j");
         });
@@ -82,21 +80,26 @@ double delta=0.001;
      */
     @Test  //caso generale
     public void testSumCalculator() throws LessThanTwoElementsException, SyntaxException {
-        instance.insert("4+3j");
-        instance.insert("-5+8j");
-        instance.sumCalculator();
+        instance.insert("4.4+3.4j");
+        instance.insert("-5.6+8.6j");
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
-        assertEquals(-1,result[0].getRe(), delta);
-        assertEquals(11,result[0].getIm(), delta);
+        instance.sumCalculator();
+        result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(-1.2,result[0].getRe(), delta);
+        assertEquals(12.0,result[0].getIm(), delta);
     }
     
     @Test  //1 solo elemento
     public void testSumCalculator2() throws LessThanTwoElementsException, SyntaxException{
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.sumCalculator();
         });
+        //controllo che lo stack è rimasto invariato
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
     }
     
     @Test  //0 elementi
@@ -111,21 +114,26 @@ double delta=0.001;
      */
     @Test  //caso generale
     public void testSubCalculator() throws LessThanTwoElementsException, SyntaxException {
-        instance.insert("4+3j");
-        instance.insert("-5+8j");
-        instance.subCalculator();
+        instance.insert("4.4+3.4j");
+        instance.insert("-5.6+8.6j");
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
-        assertEquals(9,result[0].getRe(), delta);
-        assertEquals(-5,result[0].getIm(), delta);
+        instance.subCalculator();
+        result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(10.0,result[0].getRe(), delta);
+        assertEquals(-5.2,result[0].getIm(), delta);
     }
     
     @Test  //1 solo elemento
     public void testSubCalculator2() throws LessThanTwoElementsException, SyntaxException{
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.subCalculator();
         });
+        //controllo che lo stack è rimasto invariato
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
     }
     
     @Test  //0 elementi
@@ -140,21 +148,26 @@ double delta=0.001;
      */
     @Test  //caso generale
     public void testMolCalculator() throws LessThanTwoElementsException, SyntaxException {
-        instance.insert("4+3j");
-        instance.insert("-5+8j");
-        instance.molCalculator();
+        instance.insert("4.4+3.4j");
+        instance.insert("-5.6+8.6j");
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
-        assertEquals(-44,result[0].getRe(), delta); 
-        assertEquals(17,result[0].getIm(), delta); 
+        instance.molCalculator();
+        result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(-53.88,result[0].getRe(), delta); 
+        assertEquals(18.8,result[0].getIm(), delta); 
     }
     
     @Test  //1 solo elemento
     public void testMolCalculator2() throws LessThanTwoElementsException, SyntaxException{
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.molCalculator();
         });
+        //controllo che lo stack è rimasto invariato
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
     }
     
     @Test  //0 elementi
@@ -169,21 +182,26 @@ double delta=0.001;
      */
     @Test  //caso generale
     public void testDivCalculator() throws LessThanTwoElementsException, SyntaxException {
-        instance.insert("4+3j");
-        instance.insert("-5+8j");
-        instance.divCalculator();
+        instance.insert("4.4+3.4j");
+        instance.insert("-5.6+8.6j");
         ComplexNumber[] result = instance.stackToArray();
+        assertEquals(2,result.length);
+        instance.divCalculator();
+        result = instance.stackToArray();
         assertEquals(1,result.length);
-        assertEquals(0.044,result[0].getRe(), delta); 
-        assertEquals(-0.528,result[0].getIm(), delta);  
+        assertEquals(0.043,result[0].getRe(), delta); 
+        assertEquals(-0.540,result[0].getIm(), delta);  
     }
     
     @Test  //1 solo elemento
     public void testDivCalculator2() throws LessThanTwoElementsException, SyntaxException{
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.divCalculator();
         });
+        //controllo che lo stack è rimasto invariato
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
     }
     
     @Test  //0 elementi
@@ -193,13 +211,16 @@ double delta=0.001;
         });
     }   
 
-    @Test  //caso generale
+    @Test  //divisione per 0
     public void testDivCalculator4() throws LessThanTwoElementsException, SyntaxException, ArithmeticException {
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         instance.insert("0");
         assertThrows(ArithmeticException.class, () -> {
             instance.divCalculator();
         });  
+        //controllo che lo stack è rimasto invariato
+        ComplexNumber[] result = instance.stackToArray();  
+        assertEquals(2,result.length);
     }   
        
     /**
@@ -207,12 +228,14 @@ double delta=0.001;
      */
     @Test  //caso generale
     public void testSqrtCalculator() throws LessThanOneElementException, SyntaxException {
-        instance.insert("4+3j");
-        instance.sqrtCalculator();
+        instance.insert("4.4+3.4j");
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
-        assertEquals(2.121,result[0].getRe(), delta); 
-        assertEquals(0.707,result[0].getIm(), delta);  
+        instance.sqrtCalculator();
+        result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(2.231,result[0].getRe(), delta); 
+        assertEquals(0.761,result[0].getIm(), delta);  
     }
     
     @Test  //0 elementi
@@ -226,7 +249,7 @@ double delta=0.001;
      */
     @Test //caso generale
     public void testInvCalculator() throws LessThanOneElementException, SyntaxException {
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         instance.invCalculator();
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
@@ -245,7 +268,7 @@ double delta=0.001;
      */
     @Test //caso generale
     public void testConjCalculator() throws LessThanOneElementException, SyntaxException {
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         instance.conjCalculator();
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
@@ -265,7 +288,7 @@ double delta=0.001;
     @Test  //caso generale
     public void testSaveOnVariable() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
         Character c='c';
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         assertTrue(instance.stackToArray().length==1);
         instance.saveOnVariable(c);
         assertTrue(instance.stackToArray().length==0);
@@ -288,7 +311,7 @@ double delta=0.001;
     @Test
     public void testSaveOnStack() throws SyntaxException, VariableNotInitializedException, LessThanOneElementException{
         Character c='c';
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         instance.saveOnVariable(c);
         assertTrue(instance.stackToArray().length==0);
         ComplexNumber result = instance.saveOnStack(c);
@@ -310,9 +333,9 @@ double delta=0.001;
     @Test
     public void testIncreaseVariable() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException{
         Character c='c';
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         instance.saveOnVariable(c);
-        instance.insert("3+7j");
+        instance.insert("-5.6+8.6j");
         assertTrue(instance.stackToArray().length==1);
         ComplexNumber result = instance.increaseVariable(c);
         assertTrue(instance.stackToArray().length==0);
@@ -331,7 +354,7 @@ double delta=0.001;
     @Test  //variabile non inizializzata
     public void testIncreaseVariable3() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
         Character c='c';
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         assertThrows(VariableNotInitializedException.class, () -> {
             instance.increaseVariable(c);
         });
@@ -343,9 +366,9 @@ double delta=0.001;
     @Test
     public void testDecreaseVariable() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException{
         Character c='c';
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         instance.saveOnVariable(c);
-        instance.insert("3+7j");
+        instance.insert("-5.6+8.6j");
         assertTrue(instance.stackToArray().length==1);
         ComplexNumber result = instance.decreaseVariable(c);
         assertTrue(instance.stackToArray().length==0);
