@@ -76,9 +76,9 @@
                   <Button mnemonicParsing="false" onAction="#buttonHandler" prefHeight="40.0" prefWidth="75.0" text="4" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#buttonHandler" prefHeight="40.0" prefWidth="75.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" onAction="#buttonHandler" prefHeight="40.0" prefWidth="75.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#buttonHandler" prefHeight="40.0" prefWidth="75.0" text="3" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#buttonHandler" prefHeight="40.0" prefWidth="75.0" text="1" GridPane.rowIndex="3" />
                   <Button mnemonicParsing="false" onAction="#buttonHandler" prefHeight="40.0" prefWidth="75.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" onAction="#buttonHandler" prefHeight="40.0" prefWidth="75.0" text="1" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#buttonHandler" prefHeight="40.0" prefWidth="75.0" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                   <Button mnemonicParsing="false" onAction="#buttonHandler" prefHeight="40.0" prefWidth="75.0" text="." GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <Button mnemonicParsing="false" onAction="#buttonHandler" prefHeight="40.0" prefWidth="150.0" text="0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
                </children>
@@ -137,14 +137,14 @@
       <VBox layoutX="398.0" layoutY="5.0" prefHeight="391.0" prefWidth="100.0">
          <children>
             <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="100.0" style="-fx-text-alignment: center;" styleClass="stacktxtlabel" text="STACK" textAlignment="CENTER" />
-            <Label fx:id="stackview" prefHeight="390.0" prefWidth="100.0" styleClass="stackoutputlabel" style="-fx-text-alignment: center;" text="" textAlignment="JUSTIFY" />
+            <Label fx:id="stackview" prefHeight="390.0" prefWidth="100.0" style="-fx-text-alignment: center;" styleClass="stackoutputlabel" text="" textAlignment="JUSTIFY" />
          </children>
       </VBox>
       <HBox layoutX="9.0" layoutY="7.0" prefHeight="90.0" prefWidth="385.0">
          <children>
-            <Label fx:id="outputview" nodeOrientation="RIGHT_TO_LEFT" prefHeight="91.0" prefWidth="385.0" styleClass="labelouputview">
+            <Label fx:id="outputview" ellipsisString="" nodeOrientation="RIGHT_TO_LEFT" prefHeight="91.0" prefWidth="385.0" styleClass="labelouputview" textOverrun="LEADING_WORD_ELLIPSIS">
                <font>
-                  <Font size="48.0" />
+                  <Font size="36.0" />
                </font>
             </Label>
          </children>
