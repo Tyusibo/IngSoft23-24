@@ -105,38 +105,24 @@ public class ComplexNumber implements Operations<ComplexNumber> {
         double realPart = 0;
         double imgPart = 0;
         if (input.matches("^[+-]?\\d+(\\.\\d+)?$")){ // Solo parte reale
-            if(!input.matches("^[+-]?0+(\\.0+)?$")){ //escludo i signed zeros
                 realPart = Double.parseDouble(input);
-            }
         }else if (input.matches("^[+-]?\\d+(\\.\\d+)?j$")){ //Solo parte immaginaria (j alla fine)
-            if(!input.matches("^[+-]?0+(\\.0+)?j$")){
                 String imgString = input.replaceAll("j", "");
                 imgPart = Double.parseDouble(imgString);
-            }
         }else if (input.matches("^[+-]?j\\d+(\\.\\d+)?$")){ //Solo parte immaginaria (j all'inizio)
-            if(!input.matches("^[+-]?j0+(\\.0+)?$")){
                 String imgString = input.replaceAll("j", "");
                 imgPart = Double.parseDouble(imgString);
-            }
         }
         else if (input.matches("^[+-]?\\d+(\\.\\d+)?[+-]{1}\\d+(\\.\\d+)?j$")){ //Numero complesso con parte reale e immaginaria (j alla fine)
             String[] parts = input.split("(?=[+-])");
-            if(!parts[0].matches("^[+-]?0+(\\.0+)?$")){ //escludo i signed zeros
                 realPart = Double.parseDouble(parts[0]);
-            }
-            if(!parts[1].matches("^[+-]?0+(\\.0+)?j$")){
                 String imgString = parts[1].replaceAll("j", "");
                 imgPart = Double.parseDouble(imgString);
-            }
         }else if (input.matches("^[+-]?\\d+(\\.\\d+)?[+-]{1}j\\d+(\\.\\d+)?$")){ //Numero complesso con parte reale e immaginaria (j all'inizio)
             String[] parts = input.split("(?=[+-])");
-            if(!parts[0].matches("^[+-]?0+(\\.0+)?$")){ //escludo i signed zeros
                 realPart = Double.parseDouble(parts[0]);
-            }
-            if(!parts[1].matches("^[+-]?0+(\\.0+)?j$")){
                 String imgString = parts[1].replaceAll("j", "");
                 imgPart = Double.parseDouble(imgString);
-            }
         }
         else{
             throw new SyntaxException();

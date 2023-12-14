@@ -20,7 +20,15 @@ public class Calculator {
 
     public void insert(String number) throws SyntaxException{
         ComplexNumber num = ComplexNumber.parse(number);
-        stack.push(num);
+        double newRe;
+        double newIm;
+        if(num.getRe()==-0){
+            newRe = 0;
+        } else newRe = num.getRe();
+        if(num.getIm()==-0){
+            newIm = 0; //impostare la parte immaginaria a 0 è necessario per non causare dipendenze, ma non è necessario nel contesto della calcolatrice
+        } else newIm = num.getIm();
+        stack.push(new ComplexNumber(newRe, newIm));
     }
 
     public ComplexNumber sumCalculator() throws LessThanTwoElementsException{
@@ -77,8 +85,17 @@ public class Calculator {
         if (stack.size()<1)
             throw new LessThanOneElementException();
         ComplexNumber result = stack.pop().inv();
-        stack.push(result);
-        return result;
+        double newRe;
+        double newIm;
+        if(result.getRe()==-0){
+            newRe = 0;
+        } else newRe = result.getRe();
+        if(result.getIm()==-0){
+            newIm = 0; //impostare la parte immaginaria a 0 è necessario per non causare dipendenze, ma non è necessario nel contesto della calcolatrice
+        } else newIm = result.getIm();
+        ComplexNumber ret = new ComplexNumber(newRe, newIm);
+        stack.push(ret);
+        return ret;
     }
     public ComplexNumber conjCalculator() throws LessThanOneElementException{
         if (stack.size()<1)
