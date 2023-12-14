@@ -83,7 +83,7 @@ double delta=0.001;
         instance.insert("4.4+3.4j");
         instance.insert("-5.6+8.6j");
         ComplexNumber[] result = instance.stackToArray();
-        assertEquals(1,result.length);
+        assertEquals(2,result.length);
         instance.sumCalculator();
         result = instance.stackToArray();
         assertEquals(1,result.length);
@@ -117,7 +117,7 @@ double delta=0.001;
         instance.insert("4.4+3.4j");
         instance.insert("-5.6+8.6j");
         ComplexNumber[] result = instance.stackToArray();
-        assertEquals(1,result.length);
+        assertEquals(2,result.length);
         instance.subCalculator();
         result = instance.stackToArray();
         assertEquals(1,result.length);
@@ -151,7 +151,7 @@ double delta=0.001;
         instance.insert("4.4+3.4j");
         instance.insert("-5.6+8.6j");
         ComplexNumber[] result = instance.stackToArray();
-        assertEquals(1,result.length);
+        assertEquals(2,result.length);
         instance.molCalculator();
         result = instance.stackToArray();
         assertEquals(1,result.length);
@@ -250,11 +250,13 @@ double delta=0.001;
     @Test //caso generale
     public void testInvCalculator() throws LessThanOneElementException, SyntaxException {
         instance.insert("4.4+3.4j");
-        instance.invCalculator();
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
-        assertEquals(-4,result[0].getRe(), delta); 
-        assertEquals(-3,result[0].getIm(), delta);  
+        instance.invCalculator();
+        result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(-4.4,result[0].getRe(), delta); 
+        assertEquals(-3.4,result[0].getIm(), delta);  
     }
     
     @Test  //0 elementi
@@ -269,11 +271,13 @@ double delta=0.001;
     @Test //caso generale
     public void testConjCalculator() throws LessThanOneElementException, SyntaxException {
         instance.insert("4.4+3.4j");
-        instance.conjCalculator();
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(1,result.length);
-        assertEquals(4,result[0].getRe(), delta); 
-        assertEquals(-3,result[0].getIm(), delta);  
+        instance.conjCalculator();
+        result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(4.4,result[0].getRe(), delta); 
+        assertEquals(-3.4,result[0].getIm(), delta);  
     }
     
     @Test  //0 elementi
@@ -292,10 +296,12 @@ double delta=0.001;
         assertTrue(instance.stackToArray().length==1);
         instance.saveOnVariable(c);
         assertTrue(instance.stackToArray().length==0);
+        //le operazioni successive sono necessarie per testare 
+        //che il valore salvato nella variabile corrisponde a quello inserito nello stack
         ComplexNumber result = instance.saveOnStack(c);
         assertTrue(instance.stackToArray().length==1);
-        assertEquals(4, result.getRe(), delta);
-        assertEquals(3, result.getIm(), delta);
+        assertEquals(4.4, result.getRe(), delta);
+        assertEquals(3.4, result.getIm(), delta);
     }
     @Test  //stack vuoto
     public void testSaveOnVariable2() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
@@ -308,16 +314,16 @@ double delta=0.001;
     /**
      * Test of saveOnStack method, of class Calculator.
      */
-    @Test
+    @Test  //caso generale
     public void testSaveOnStack() throws SyntaxException, VariableNotInitializedException, LessThanOneElementException{
         Character c='c';
         instance.insert("4.4+3.4j");
-        instance.saveOnVariable(c);
+        instance.saveOnVariable(c);  //unico modo per inizializzare il valore della variabile
         assertTrue(instance.stackToArray().length==0);
         ComplexNumber result = instance.saveOnStack(c);
         assertTrue(instance.stackToArray().length==1);
-        assertEquals(4, result.getRe(), delta);
-        assertEquals(3, result.getIm(), delta);
+        assertEquals(4.4, result.getRe(), delta);
+        assertEquals(3.4, result.getIm(), delta);
     }
     @Test  //variabile non inizializzata
     public void testSaveOnStack2() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
@@ -330,25 +336,32 @@ double delta=0.001;
     /**
      * Test of increaseVariable method, of class Calculator.
      */
-    @Test
+    @Test  //caso generale
     public void testIncreaseVariable() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException{
         Character c='c';
         instance.insert("4.4+3.4j");
-        instance.saveOnVariable(c);
+        instance.saveOnVariable(c);  //unico modo per inizializzare il valore della variabile
         instance.insert("-5.6+8.6j");
         assertTrue(instance.stackToArray().length==1);
         ComplexNumber result = instance.increaseVariable(c);
         assertTrue(instance.stackToArray().length==0);
-        assertEquals(7, result.getRe(), delta);
-        assertEquals(10, result.getIm(), delta);
+        assertEquals(-1.2, result.getRe(), delta);
+        assertEquals(12.0, result.getIm(), delta);
     }
     
     @Test  //stack vuoto
     public void testIncreaseVariable2() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
         Character c='c';
+        instance.insert("4.4+3.4j");
+        instance.saveOnVariable(c);  //unico modo per inizializzare il valore della variabile
         assertThrows(LessThanOneElementException.class, () -> {
             instance.increaseVariable(c);
         });
+        //controllo che il valore della variabile non è cambiato
+        ComplexNumber result = instance.saveOnStack(c);
+        assertTrue(instance.stackToArray().length==1);
+        assertEquals(4.4, result.getRe(), delta);
+        assertEquals(3.4, result.getIm(), delta);
     }
     
     @Test  //variabile non inizializzata
@@ -358,6 +371,10 @@ double delta=0.001;
         assertThrows(VariableNotInitializedException.class, () -> {
             instance.increaseVariable(c);
         });
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(4.4,result[0].getRe(), delta);
+        assertEquals(3.4,result[0].getIm(), delta);
     }
 
     /**
@@ -367,29 +384,40 @@ double delta=0.001;
     public void testDecreaseVariable() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException{
         Character c='c';
         instance.insert("4.4+3.4j");
-        instance.saveOnVariable(c);
+        instance.saveOnVariable(c);  //unico modo per inizializzare il valore della variabile
         instance.insert("-5.6+8.6j");
         assertTrue(instance.stackToArray().length==1);
         ComplexNumber result = instance.decreaseVariable(c);
         assertTrue(instance.stackToArray().length==0);
-        assertEquals(1, result.getRe(), delta);
-        assertEquals(-4, result.getIm(), delta);
+        assertEquals(10.0,result.getRe(), delta);
+        assertEquals(-5.2,result.getIm(), delta);
     }
     
     @Test  //stack vuoto
     public void testDecreaseVariable2() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
         Character c='c';
+        instance.insert("4.4+3.4j");
+        instance.saveOnVariable(c);  //unico modo per inizializzare il valore della variabile
         assertThrows(LessThanOneElementException.class, () -> {
             instance.decreaseVariable(c);
         });
+        //controllo che il valore della variabile non è cambiato
+        ComplexNumber result = instance.saveOnStack(c);
+        assertTrue(instance.stackToArray().length==1);
+        assertEquals(4.4, result.getRe(), delta);
+        assertEquals(3.4, result.getIm(), delta); 
     }
     
     @Test  //variabile non inizializzata
     public void testDecreaseVariable3() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
         Character c='c';
-        instance.insert("4+3j");
+        instance.insert("4.4+3.4j");
         assertThrows(VariableNotInitializedException.class, () -> {
             instance.decreaseVariable(c);
         });
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
+        assertEquals(4.4,result[0].getRe(), delta);
+        assertEquals(3.4,result[0].getIm(), delta);
     }
 }
