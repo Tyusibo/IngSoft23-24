@@ -1,13 +1,11 @@
 package unisa.ingsoft;
 
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
-import javafx.util.Duration;
 import unisa.ingsoft.ComplexNumber.ComplexNumber;
 import unisa.ingsoft.Exceptions.LessThanOneElementException;
 import unisa.ingsoft.Exceptions.LessThanTwoElementsException;

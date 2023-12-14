@@ -14,7 +14,7 @@ public class CalculatorApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(CalculatorApplication.class.getResource("/unisa/ingsoft/gui_calc.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 510, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 560, 400);
         stage.setTitle("Calcolatrice Scientifica");
         stage.setScene(scene);
 
