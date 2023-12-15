@@ -221,7 +221,7 @@ double delta=0.001;
     public void testMol() {
         ComplexNumber instance = new ComplexNumber(12.3,27.1);
         ComplexNumber z = new ComplexNumber(74.4,91.4);
-        ComplexNumber result = instance.mol(z);
+            ComplexNumber result = instance.mol(z);
         assertEquals(-1561.82, result.getRe(), delta);
         assertEquals(3140.46, result.getIm(), delta);
     }
@@ -388,8 +388,8 @@ double delta=0.001;
      */
     @Test  //caso generale
     public void testSqrt() {
-        ComplexNumber instance1 = new ComplexNumber(4.81,-2.63);
-        ComplexNumber result1 = instance1.sqrt();
+        ComplexNumber instance = new ComplexNumber(4.81,-2.63);
+        ComplexNumber result1 = instance        .sqrt();
         assertEquals(2.268, result1.getRe(), delta);
         assertEquals(-0.579, result1.getIm(), delta);
     }
