@@ -838,10 +838,34 @@ double delta=0.001;
             ComplexNumber.parse(instance);
         });
     }
+
+    @Test //delimitatore non seguito da numero
+    public void testParse21B() throws SyntaxException{
+        String instance = "6.";
+        assertThrows(SyntaxException.class, () -> {
+            ComplexNumber.parse(instance);
+        });
+    }
    
     @Test //solo unità immaginaria
     public void testParse22() throws SyntaxException{
         String instance = "j";
+        assertThrows(SyntaxException.class, () -> {
+            ComplexNumber.parse(instance);
+        });
+    }
+
+    @Test //solo unità immaginaria
+    public void testParse22B() throws SyntaxException{
+        String instance = "+j";
+        assertThrows(SyntaxException.class, () -> {
+            ComplexNumber.parse(instance);
+        });
+    }
+
+    @Test //solo unità immaginaria
+    public void testParse22C() throws SyntaxException{
+        String instance = "-j";
         assertThrows(SyntaxException.class, () -> {
             ComplexNumber.parse(instance);
         });
@@ -951,7 +975,7 @@ double delta=0.001;
         });
     }
 
-    @Test //unità immaginaria ripetuta che alla fine con parte reale omessa
+    @Test //unità immaginaria ripetuta con parte reale omessa
     public void testParse36() throws SyntaxException{
         String instance = "16j.8j";
         assertThrows(SyntaxException.class, () -> {
@@ -966,52 +990,100 @@ double delta=0.001;
             ComplexNumber.parse(instance);
         });
     }
-
-    @Test //stringa troppo grande (dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
+    
+    @Test 
     public void testParse38() throws SyntaxException{
-        String instance = "1797693134862315708145274237317043567980705675258449965989174768031572607800285387605895586327668781715404589535143824642343213268894641827684675467035375169860499105765512820762454900903893289440758685084551339423045832369032229481658085593321233482747978262041447231687381771809192998812504040261841299999999999999";
+        String instance = "4+j5";
         ComplexNumber result = ComplexNumber.parse(instance);
-        assertEquals(Double.POSITIVE_INFINITY,result.getRe());
-        assertEquals(0,result.getIm(), delta);
+        assertEquals(4,result.getRe());
+        assertEquals(5,result.getIm());
     }
 
-    @Test //stringa troppo grande ma non abbastanza per infinity(dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
+    @Test 
+    public void testParse38B() throws SyntaxException{
+        String instance = "4.3+j5.6";
+        ComplexNumber result = ComplexNumber.parse(instance);
+        assertEquals(4.3,result.getRe());
+        assertEquals(5.6,result.getIm());
+    }
+
+    @Test 
     public void testParse39() throws SyntaxException{
-        String instance = "179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180915399881250404026184129999999";
+        String instance = "4-j5";
         ComplexNumber result = ComplexNumber.parse(instance);
-        assertEquals(Double.MAX_VALUE,result.getRe());
-        assertEquals(0,result.getIm(), delta);
+        assertEquals(4,result.getRe());
+        assertEquals(-5,result.getIm());
     }
 
-    @Test //stringa troppo grande negativa (dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
+    @Test 
+    public void testParse39B() throws SyntaxException{
+        String instance = "4.3-j5.6";
+        ComplexNumber result = ComplexNumber.parse(instance);
+        assertEquals(4.3,result.getRe());
+        assertEquals(-5.6,result.getIm());
+    }
+
+    @Test 
     public void testParse40() throws SyntaxException{
-        String instance = "-1797693134862315708145274237317043567980705675258449965989174768031572607800285387605895586327668781715404589535143824642343213268894641827684675467035375169860499105765512820762454900903893289440758685084551339423045832369032229481658085593321233482747978262041447231687381771809192998812504040261841299999999999999";
+        String instance = "+4+j5";
         ComplexNumber result = ComplexNumber.parse(instance);
-        assertEquals(Double.NEGATIVE_INFINITY,result.getRe());
-        assertEquals(0,result.getIm(), delta);
+        assertEquals(4,result.getRe());
+        assertEquals(5,result.getIm());
     }
 
-    @Test //stringa troppo grande negativa ma non abbastanza per negative infinity(dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
+    @Test 
+    public void testParse40B() throws SyntaxException{
+        String instance = "+4.3+j5.6";
+        ComplexNumber result = ComplexNumber.parse(instance);
+        assertEquals(4.3,result.getRe());
+        assertEquals(5.6,result.getIm());
+    }
+
+    @Test 
     public void testParse41() throws SyntaxException{
-        String instance = "-179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180915399881250404026184129999989";
+        String instance = "+4-j5";
         ComplexNumber result = ComplexNumber.parse(instance);
-        assertEquals(-1*(Double.MAX_VALUE),result.getRe());
-        assertEquals(0,result.getIm(), delta);
+        assertEquals(4,result.getRe());
+        assertEquals(-5,result.getIm());
     }
 
-    @Test //stringa troppo grande che rappresenta un numero molto piccolo (dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
+    @Test 
+    public void testParse41B() throws SyntaxException{
+        String instance = "+4.3-j5.6";
+        ComplexNumber result = ComplexNumber.parse(instance);
+        assertEquals(4.3,result.getRe());
+        assertEquals(-5.6,result.getIm());
+    }
+
+    @Test 
     public void testParse42() throws SyntaxException{
-        String instance = "0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000025";
+        String instance = "-4+j5";
         ComplexNumber result = ComplexNumber.parse(instance);
-        assertEquals(Double.MIN_VALUE,result.getRe());
-        assertEquals(0,result.getIm(), delta);
+        assertEquals(-4,result.getRe());
+        assertEquals(5,result.getIm());
     }
 
-    @Test //stringa troppo grande che rappresenta un numero troppo piccolo(dato che i test di prima coprono parte reale e parte immaginaria testo solo su parte reale)
-    public void testParse43() throws SyntaxException{
-        String instance = "0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000025";
+    @Test 
+    public void testParse42B() throws SyntaxException{
+        String instance = "-4.3+j5.6";
         ComplexNumber result = ComplexNumber.parse(instance);
-        assertEquals(0,result.getRe());
-        assertEquals(0,result.getIm());
-    }   
+        assertEquals(-4.3,result.getRe());
+        assertEquals(5.6,result.getIm());
+    }
+
+    @Test 
+    public void testParse43() throws SyntaxException{
+        String instance = "-4-j5";
+        ComplexNumber result = ComplexNumber.parse(instance);
+        assertEquals(-4,result.getRe());
+        assertEquals(-5,result.getIm());
+    }
+
+    @Test 
+    public void testParse43B() throws SyntaxException{
+        String instance = "-4.3-j5.6";
+        ComplexNumber result = ComplexNumber.parse(instance);
+        assertEquals(-4.3,result.getRe());
+        assertEquals(-5.6,result.getIm());
+    }
 }

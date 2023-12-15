@@ -83,6 +83,8 @@ public class CalculatorController {
                     anchorpane.setStyle("-fx-background-color: white");
                 }else if(input.equals("black")){
                     anchorpane.setStyle("-fx-background-color: black");
+                }else if(input.equals("penis")){
+                    outputview.setText("8=========D - - -");
                 }else{
                     calculator.insert(input);
                     outputview.setText("");
