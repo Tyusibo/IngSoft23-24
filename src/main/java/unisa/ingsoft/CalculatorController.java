@@ -35,6 +35,8 @@ public class CalculatorController {
         varGridPane.setVisible(false); // Imposta il setVisible a false all'avvio
         calculator = new Calculator();
         originalFont = outputview.getFont();
+        numbersButton.setOpacity(0.5);
+
     }
 
 
