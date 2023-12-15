@@ -22,14 +22,17 @@ public class CalculatorController {
     private Label outputview;
     @FXML
     private Label stackview;
-    @FXML
-    private AnchorPane anchorpane;
-    private Font originalFont;
-    @FXML
-    private Button variablesButtons;
-    @FXML
-    private Button numbersButton;
+
     private Calculator calculator;
+
+    //Funionalità aggiuntive "estetiche" non previste nella fase di design
+    @FXML
+    private AnchorPane anchorpane;  //per modificare il colore della calcolatrice (background)
+    private Font originalFont; //per modificare il font quando il testo dell'errore è troppo lungo
+    @FXML
+    private Button variablesButtons; //per mostrare il pulsante delle variabili come "premuto"
+    @FXML
+    private Button numbersButton; //per mostrare il pulsante dei numeri come "premuto"
 
     public void initialize() {
         varGridPane.setVisible(false); // Imposta il setVisible a false all'avvio
