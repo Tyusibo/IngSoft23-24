@@ -945,7 +945,7 @@ double delta=0.001;
 
     @Test //più di un punto nella parte reale e nella parte immaginaria
     public void testParse32() throws SyntaxException{
-        String instance = "8..24+368..1j";
+        String instance = "8..2.4+36.8..1j";
         assertThrows(SyntaxException.class, () -> {
             ComplexNumber.parse(instance);
         });
@@ -969,7 +969,7 @@ double delta=0.001;
 
     @Test //unità immaginaria ripetuta
     public void testParse35() throws SyntaxException{
-        String instance = "457.12-j348.61j";
+        String instance = "457.12-j34j8.61j";
         assertThrows(SyntaxException.class, () -> {
             ComplexNumber.parse(instance);
         });
