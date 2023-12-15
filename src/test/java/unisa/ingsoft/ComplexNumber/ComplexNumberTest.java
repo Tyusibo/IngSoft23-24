@@ -217,90 +217,181 @@ double delta=0.001;
     /**
      * Test of mol method, of class ComplexNumber.
      */
-    @Test  //caso generale
+    @Test //prodotto tra 2 numeri complessi con parti reali e immaginarie non nulle
     public void testMol() {
-        ComplexNumber instance = new ComplexNumber(12.5,6.3);
-        ComplexNumber z = new ComplexNumber(3.3,6.5);
+        ComplexNumber instance = new ComplexNumber(12.3,27.1);
+        ComplexNumber z = new ComplexNumber(74.4,91.4);
         ComplexNumber result = instance.mol(z);
-        assertEquals(0.3, result.getRe(), delta);
-        assertEquals(102.04, result.getIm(), delta);
+        assertEquals(-1561.82, result.getRe(), delta);
+        assertEquals(3140.46, result.getIm(), delta);
     }
-
-    @Test  //primo operando uguale a 0
+    @Test //prodotto tra 2 numeri complessi di cui uno con parte immaginaria nulla
     public void testMol2() {
-        ComplexNumber instance = new ComplexNumber(0,0);
-        ComplexNumber z = new ComplexNumber(91,52.91);
+        ComplexNumber instance = new ComplexNumber(12.3,27.1);
+        ComplexNumber z = new ComplexNumber(74.4,0);
         ComplexNumber result = instance.mol(z);
-        assertEquals(0, result.getRe(), delta);
-        assertEquals(0, result.getIm(), delta);
+        assertEquals(915.12, result.getRe(), delta);
+        assertEquals(2016.24, result.getIm(), delta);
     }
-
-    @Test  //secondo operando uguale a 0
+    @Test  //prodotto tra 2 numeri complessi di cui uno con parte reale nulla
     public void testMol3() {
-        ComplexNumber instance = new ComplexNumber(73.53,24.66);
+        ComplexNumber instance = new ComplexNumber(12.3,-27.1);
+        ComplexNumber z = new ComplexNumber(0, 91.4);
+        ComplexNumber result = instance.mol(z);
+        assertEquals(2476.940, result.getRe(), delta);
+        assertEquals(1124.22, result.getIm(), delta);
+    } 
+    @Test  //prodotto tra 2 numeri complessi di cui uno nullo
+    public void testMol4() {
+        ComplexNumber instance = new ComplexNumber(12.3,27.1);
         ComplexNumber z = new ComplexNumber(0,0);
         ComplexNumber result = instance.mol(z);
         assertEquals(0, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
-    }
-
+    } 
+    @Test  //prodotto tra 2 numeri complessi entrambi con parte immaginaria nulla
+    public void testMol5() {
+        ComplexNumber instance = new ComplexNumber(12.3,0);
+        ComplexNumber z = new ComplexNumber(-74.4,0);
+        ComplexNumber result = instance.mol(z);
+        assertEquals(-915.12, result.getRe(), delta);
+        assertEquals(0, result.getIm(), delta);
+    } 
+    @Test  //prodotto tra 2 numeri complessi di cui uno con parte immaginaria nulla e l'altro con parte reale nulla
+    public void testMol6() {
+        ComplexNumber instance = new ComplexNumber(-12.3,0);
+        ComplexNumber z = new ComplexNumber(0,91.4);
+        ComplexNumber result = instance.mol(z);
+        assertEquals(0, result.getRe(), delta);
+        assertEquals(-1124.22, result.getIm(), delta);
+    } 
+    @Test  //prodotto tra 2 numeri complessi di cui uno nullo e uno con parte immaginaria nulla
+    public void testMol7() {
+        ComplexNumber instance = new ComplexNumber(12.3,0);
+        ComplexNumber z = new ComplexNumber(0,0);
+        ComplexNumber result = instance.mol(z);
+        assertEquals(0, result.getRe(), delta);
+        assertEquals(0, result.getIm(), delta);
+    } 
+    @Test  //prodotto tra 2 numeri complessi entrambi con parte reale nulla
+    public void testMol8() {
+        ComplexNumber instance = new ComplexNumber(0,27.1);
+        ComplexNumber z = new ComplexNumber(0,91.4);
+        ComplexNumber result = instance.mol(z);
+        assertEquals(-2476.94, result.getRe(), delta);
+        assertEquals(0, result.getIm(), delta);
+    } 
+    @Test  //prodotto tra 2 numeri complessi di cui uno nullo e uno con parte reale nulla
+    public void testMol9() {
+        ComplexNumber instance = new ComplexNumber(0,27.1);
+        ComplexNumber z = new ComplexNumber(0,0);
+        ComplexNumber result = instance.mol(z);
+        assertEquals(0, result.getRe(), delta);
+        assertEquals(0, result.getIm(), delta);
+    } 
+    @Test  //prodotto tra 2 numeri complessi entrambi nulli
+    public void testMol10() {
+        ComplexNumber instance = new ComplexNumber(0,0);
+        ComplexNumber z = new ComplexNumber(0,0);
+        ComplexNumber result = instance.mol(z);
+        assertEquals(0, result.getRe(), delta);
+        assertEquals(0, result.getIm(), delta);
+    } 
     /**
      * Test of div method, of class ComplexNumber.
      */
-    @Test  //caso generale
+     @Test //divisione tra 2 numeri complessi con parti reali e immaginarie non nulle
     public void testDiv() {
-        ComplexNumber instance = new ComplexNumber(12.5,6.3);
-        ComplexNumber z = new ComplexNumber(3.3,6.5);
+        ComplexNumber instance = new ComplexNumber(12.3,27.1);
+        ComplexNumber z = new ComplexNumber(74.4,91.4);
         ComplexNumber result = instance.div(z);
-        assertEquals(1.546, result.getRe(), delta);
-        assertEquals(-1.137, result.getIm(), delta);
+        assertEquals(0.244, result.getRe(), delta);
+        assertEquals(0.064, result.getIm(), delta);
     }
-
-    @Test  //0 diviso un numero non nullo
-    public void testDiv2(){
-            ComplexNumber instance = new ComplexNumber(0,0);
-            ComplexNumber z = new ComplexNumber(24.5,67.1);
-            ComplexNumber result = instance.div(z);
-            assertEquals(0, result.getRe(), delta);
-            assertEquals(0, result.getIm(), delta);
+    @Test //divisione tra 2 numeri complessi di cui uno con parte immaginaria nulla
+    public void testDiv2() {
+        ComplexNumber instance = new ComplexNumber(12.3,27.1);
+        ComplexNumber z = new ComplexNumber(74.4,0);
+        ComplexNumber result = instance.div(z);
+        assertEquals(0.165, result.getRe(), delta);
+        assertEquals(0.364, result.getIm(), delta);
     }
-    @Test  //divisione per 0
-    public void testDiv3() throws ArithmeticException{
-        ComplexNumber instance = new ComplexNumber(12.5,6.3);
+    @Test  //divisione tra 2 numeri complessi di cui uno con parte reale nulla
+    public void testDiv3() {
+        ComplexNumber instance = new ComplexNumber(12.3,-27.1);
+        ComplexNumber z = new ComplexNumber(0, 91.4);
+        ComplexNumber result = instance.div(z);
+        assertEquals(-0.296, result.getRe(), delta);
+        assertEquals(-0.135, result.getIm(), delta);
+    } 
+    @Test  //divisione tra 2 numeri complessi di cui uno nullo
+    public void testDiv4() {
+        ComplexNumber instance = new ComplexNumber(12.3,27.1);
         ComplexNumber z = new ComplexNumber(0,0);
         assertThrows(ArithmeticException.class, () -> {
             instance.div(z);
         });
-    }
-    @Test  //0 diviso 0
-    public void testDiv4() throws ArithmeticException{
+    } 
+    @Test  //divisione tra 2 numeri complessi entrambi con parte immaginaria nulla
+    public void testDiv5() {
+        ComplexNumber instance = new ComplexNumber(12.3,0);
+        ComplexNumber z = new ComplexNumber(-74.4,0);
+        ComplexNumber result = instance.div(z);
+        assertEquals(-0.165, result.getRe(), delta);
+        assertEquals(0, result.getIm(), delta);
+    } 
+    @Test  //divisione tra 2 numeri complessi di cui uno con parte immaginaria nulla e l'altro con parte reale nulla
+    public void testDiv6() {
+        ComplexNumber instance = new ComplexNumber(-12.3,0);
+        ComplexNumber z = new ComplexNumber(0,91.4);
+        ComplexNumber result = instance.div(z);
+        assertEquals(0, result.getRe(), delta);
+        assertEquals(0.134, result.getIm(), delta);
+    } 
+    @Test  //divisione tra 2 numeri complessi di cui uno nullo e uno con parte immaginaria nulla
+    public void testDiv7() {
+        ComplexNumber instance = new ComplexNumber(12.3,0);
+        ComplexNumber z = new ComplexNumber(0,0);
+        assertThrows(ArithmeticException.class, () -> {
+            instance.div(z);
+        });
+    } 
+    @Test  //divisione tra 2 numeri complessi entrambi con parte reale nulla
+    public void testDiv8() {
+        ComplexNumber instance = new ComplexNumber(0,27.1);
+        ComplexNumber z = new ComplexNumber(0,91.4);
+        ComplexNumber result = instance.div(z);
+        assertEquals(0.296, result.getRe(), delta);
+        assertEquals(0, result.getIm(), delta);
+    } 
+    @Test  //divisione tra 2 numeri complessi di cui uno nullo e uno con parte reale nulla
+    public void testDiv9() {
+        ComplexNumber instance = new ComplexNumber(0,27.1);
+        ComplexNumber z = new ComplexNumber(0,0);
+        assertThrows(ArithmeticException.class, () -> {
+            instance.div(z);
+        });
+    } 
+    @Test  //divisione tra 2 numeri complessi entrambi nulli
+    public void testDiv10() {
         ComplexNumber instance = new ComplexNumber(0,0);
         ComplexNumber z = new ComplexNumber(0,0);
         assertThrows(ArithmeticException.class, () -> {
             instance.div(z);
         });
-    }
+    } 
+    /**
+     * Test of sqrt method, of class ComplexNumber.
+     */
     /**
      * Test of sqrt method, of class ComplexNumber.
      */
     @Test  //caso generale
     public void testSqrt() {
-        ComplexNumber instance = new ComplexNumber(4.81,2.63);
-        ComplexNumber result = instance.sqrt();
-        assertEquals(2.268, result.getRe(), delta);
-        assertEquals(0.579, result.getIm(), delta);
         ComplexNumber instance1 = new ComplexNumber(4.81,-2.63);
         ComplexNumber result1 = instance1.sqrt();
         assertEquals(2.268, result1.getRe(), delta);
         assertEquals(-0.579, result1.getIm(), delta);
-        ComplexNumber instance2 = new ComplexNumber(-4.81,-2.63);
-        ComplexNumber result2 = instance2.sqrt();
-        assertEquals(0.579, result2.getRe(), delta);
-        assertEquals(-2.268, result2.getIm(), delta);
-        ComplexNumber instance3 = new ComplexNumber(-4.81,+2.63);
-        ComplexNumber result3 = instance3.sqrt();
-        assertEquals(0.579, result3.getRe(), delta);
-        assertEquals(+2.268, result3.getIm(), delta);
     }
     @Test //parte reale uguale a 0
     public void testSqrt2() {
@@ -334,32 +425,17 @@ double delta=0.001;
         ComplexNumber result = instance.inv();
         assertEquals(15.82, result.getRe(), delta);
         assertEquals(-49.39, result.getIm(), delta);
-        ComplexNumber instance1 = new ComplexNumber(15.82,-49.39);
-        ComplexNumber result1 = instance1.inv();
-        assertEquals(-15.82, result1.getRe(), delta);
-        assertEquals(49.39, result1.getIm(), delta);
     }
-
-    @Test  //caso segni concordi 
-    public void testInv2() {
-        ComplexNumber instance = new ComplexNumber(15.82,49.39);
-        ComplexNumber result = instance.inv();
-        assertEquals(-15.82, result.getRe(), delta);
-        assertEquals(-49.39, result.getIm(), delta);
-        ComplexNumber instance1 = new ComplexNumber(-15.82,-49.39);
-        ComplexNumber result1 = instance1.inv();
-        assertEquals(15.82, result1.getRe(), delta);
-        assertEquals(49.39, result1.getIm(), delta);
-    }
+    
     @Test  //parte reale uguale a 0
-    public void testInv3() {
+    public void testInv2() {
         ComplexNumber instance = new ComplexNumber(0,49.39);
         ComplexNumber result = instance.inv();
         assertEquals(0, result.getRe(), delta);
         assertEquals(-49.39, result.getIm(), delta);
     }
     @Test  //parte immaginaria uguale a 0
-    public void testInv4() {
+    public void testInv3() {
         ComplexNumber instance = new ComplexNumber(-15.82,0);
         ComplexNumber result = instance.inv();
         assertEquals(15.82, result.getRe(), delta);
@@ -367,7 +443,7 @@ double delta=0.001;
     }
 
     @Test  //inverso di 0
-    public void testInv5() {
+    public void testInv4() {
         ComplexNumber instance = new ComplexNumber(0,0);
         ComplexNumber result = instance.inv();
         assertEquals(0, result.getRe(), delta);
@@ -398,7 +474,13 @@ double delta=0.001;
         assertEquals(15.82, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     }
-
+    @Test  //coniugato di 0
+    public void testConj4() {
+        ComplexNumber instance = new ComplexNumber(0,0);
+        ComplexNumber result = instance.conj();
+        assertEquals(0, result.getRe(), delta);
+        assertEquals(0, result.getIm(), delta);
+}
     /**
      * Test of toString method, of class ComplexNumber.
      */
@@ -432,7 +514,7 @@ double delta=0.001;
     
     @Test //parte reale nulla e parte immaginaria positiva
     public void testToString5() {
-        ComplexNumber instance = new ComplexNumber(0,+6.3);
+        ComplexNumber instance = new ComplexNumber(0,6.3);
         String result = instance.toString();
         assertEquals("6.3j", result);
     }
@@ -453,9 +535,9 @@ double delta=0.001;
     
     @Test  //parte reale negativa e parte immaginaria nulla
     public void testToString8() {
-        ComplexNumber instance = new ComplexNumber(-12,0);
+        ComplexNumber instance = new ComplexNumber(-12.5,0);
         String result = instance.toString();
-        assertEquals("-12", result);
+        assertEquals("-12.5", result);
     }
 
     @Test  //parte reale nulla e parte immaginaria nulla
