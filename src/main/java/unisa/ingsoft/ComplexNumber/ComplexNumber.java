@@ -69,6 +69,7 @@ public class ComplexNumber implements Operations<ComplexNumber> {
         return new ComplexNumber(-1*this.getRe(),-1*this.getIm());
     }
     
+    @Override
     public ComplexNumber conj() {
         return new ComplexNumber(this.getRe(),-1*this.getIm());
     }
@@ -100,8 +101,7 @@ public class ComplexNumber implements Operations<ComplexNumber> {
         }else if (input.matches("^[+-]?j\\d+(\\.\\d+)?$")){ //Solo parte immaginaria (j all'inizio)
                 String imgString = input.replaceAll("j", "");
                 imgPart = Double.parseDouble(imgString);
-        }
-        else if (input.matches("^[+-]?\\d+(\\.\\d+)?[+-]{1}\\d+(\\.\\d+)?j$")){ //Numero complesso con parte reale e immaginaria (j alla fine)
+        }else if (input.matches("^[+-]?\\d+(\\.\\d+)?[+-]{1}\\d+(\\.\\d+)?j$")){ //Numero complesso con parte reale e immaginaria (j alla fine)
             String[] parts = input.split("(?=[+-])");
                 realPart = Double.parseDouble(parts[0]);
                 String imgString = parts[1].replaceAll("j", "");
@@ -111,8 +111,7 @@ public class ComplexNumber implements Operations<ComplexNumber> {
                 realPart = Double.parseDouble(parts[0]);
                 String imgString = parts[1].replaceAll("j", "");
                 imgPart = Double.parseDouble(imgString);
-        }
-        else{
+        }else{
             throw new SyntaxException();
         }
 
