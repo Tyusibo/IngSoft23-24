@@ -44,7 +44,7 @@ public class CalculatorController {
 
 
     @FXML
-    private void enterHandler(ActionEvent e) throws VariableNotInitializedException, LessThanOneElementException{
+    private void enterHandler(ActionEvent e){
         String input = outputview.getText();
 
         try {
