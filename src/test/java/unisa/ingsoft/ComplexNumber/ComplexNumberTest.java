@@ -1013,7 +1013,5 @@ double delta=0.001;
         ComplexNumber result = ComplexNumber.parse(instance);
         assertEquals(0,result.getRe());
         assertEquals(0,result.getIm());
-    }
-
-
+    }   
 }

@@ -41,12 +41,15 @@ double delta=0.001;
         ComplexNumber result=instance.peek();
         assertEquals(1.1,result.getRe(), delta);
         assertEquals(1.1,result.getIm(), delta);    
+    }
+    @Test  //caso con 1 elemento
+    public void testDrop2() {
+        instance.push(new ComplexNumber(1.1,1.1)); 
         instance.drop();
         assertTrue(instance.isEmpty());
     }
-    
     @Test  //caso con 0 elementi
-    public void testDrop2() {
+    public void testDrop3() {
         instance.drop();
         assertTrue(instance.isEmpty());
     }
@@ -90,7 +93,7 @@ double delta=0.001;
         instance.push(new ComplexNumber(1.1,1.1));
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.swap();
-     });
+        });
         assertEquals(1,instance.size());
         ComplexNumber result=instance.pop();
         assertEquals(1.1,result.getRe(), delta);
@@ -101,7 +104,8 @@ double delta=0.001;
     public void testSwap3() throws LessThanTwoElementsException {
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.swap();
-     });
+        });
+        assertEquals(0,instance.size());
     }
 
     /**
@@ -110,22 +114,22 @@ double delta=0.001;
     @Test //caso generale
     public void testDup() throws LessThanOneElementException {
         instance.push(new ComplexNumber(1.1,1.1));
-        assertEquals(1,instance.size());
         instance.dup();
         assertEquals(2,instance.size());
-        ComplexNumber result2=instance.pop();
-        assertEquals(1.1,result2.getRe(), delta);
-        assertEquals(1.1,result2.getIm(), delta); 
         ComplexNumber result1=instance.pop();
         assertEquals(1.1,result1.getRe(), delta);
-        assertEquals(1.1,result1.getIm(), delta);        
+        assertEquals(1.1,result1.getIm(), delta); 
+        ComplexNumber result2=instance.pop();
+        assertEquals(1.1,result2.getRe(), delta);
+        assertEquals(1.1,result2.getIm(), delta);        
     }
     
     @Test //caso con 0 elementi
     public void testDup2() throws LessThanOneElementException{
         assertThrows(LessThanOneElementException.class, () -> {
             instance.dup();
-     });       
+        });   
+        assertEquals(0,instance.size());
     }
 
     /**
@@ -135,7 +139,6 @@ double delta=0.001;
     public void testOver() throws LessThanTwoElementsException {
         instance.push(new ComplexNumber(1.1,1.1));
         instance.push(new ComplexNumber(2.2,2.2));
-        assertEquals(2,instance.size());
         instance.over();
         assertEquals(3,instance.size());
         ComplexNumber result1=instance.pop();
@@ -153,7 +156,7 @@ double delta=0.001;
         instance.push(new ComplexNumber(1.1,1.1));
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.over();
-     }); 
+        }); 
         assertEquals(1,instance.size());
         ComplexNumber result=instance.pop();
         assertEquals(1.1,result.getRe(), delta);
@@ -164,7 +167,8 @@ double delta=0.001;
     public void testOver3() throws LessThanTwoElementsException {
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.over();
-     }); 
+        }); 
+        assertEquals(0,instance.size());
     }
     
 }
