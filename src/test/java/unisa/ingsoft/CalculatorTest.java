@@ -279,6 +279,17 @@ double delta=0.001;
         ComplexNumber[] result = instance.stackToArray();
         assertEquals(0,result.length);
     }  
+    
+    @Test //inverso di 0
+    public void testInvCalculator3() throws LessThanOneElementException, SyntaxException {
+        instance.insert("0");
+        instance.invCalculator();
+        ComplexNumber[] result = instance.stackToArray();
+        assertEquals(1,result.length);
+        //negli assert non è presente il delta perchè il risultato sarà proprio 0 e non -0
+        assertEquals(0,result[0].getRe()); 
+        assertEquals(0,result[0].getIm());  
+    }
     /**
      * Test of conjCalculator method, of class Calculator.
      */
