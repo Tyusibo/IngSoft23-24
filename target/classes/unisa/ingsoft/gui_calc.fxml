@@ -24,7 +24,7 @@
                   <Button fx:id="enterButton" mnemonicParsing="false" onAction="#enterHandler" prefHeight="55.0" prefWidth="78.0" text="Enter" />
                </children>
             </HBox>
-            <VBox layoutX="314.0" layoutY="71.0" prefHeight="229.0" prefWidth="78.0" styleClass="stackFunctionBox">
+            <VBox layoutX="314.0" layoutY="77.0" prefHeight="229.0" prefWidth="78.0" styleClass="stackFunctionBox">
                <children>
                   <GridPane maxHeight="220.0" prefHeight="229.0" prefWidth="78.0" styleClass="stackFunctionPane" vgap="5">
                     <columnConstraints>
