@@ -32,12 +32,6 @@
     -fx-wrap-text: true; /* Testo a capo automatico */
 
 }
-.button:hover{
-    -fx-opacity: 0.90;
-}
-.button:pressed{
-    -fx-opacity: 0.5;
-}
 .calcFunctionBox > .button{
     -fx-border-color: #002372;
     -fx-border-width: 5px;
@@ -45,6 +39,12 @@
     -fx-background-radius: 75%;
     -fx-background-color: #14213D;
     -fx-text-fill: white;
+}
+.stackFunctionPane > .button:hover{
+    -fx-opacity: 0.90;
+}
+.stackFunctionPane > .button:pressed{
+    -fx-opacity: 0.5;
 }
 .stackFunctionPane > .button {
     -fx-border-color: #ffb846;
@@ -54,16 +54,32 @@
     -fx-text-fill: white;
     -fx-background-color: #FCA311;
 }
+.vargridpane > .button:hover{
+    -fx-opacity: 0.90;
+}
+.vargridpane > .button:pressed{
+    -fx-opacity: 0.5;
+}
 .vargridpane > .button {
     -fx-background-radius: 5%;
     -fx-background-color: #7e7a7a;
     -fx-text-fill: white;
 }
-
+.numbersgridpane > .button:hover{
+    -fx-opacity: 0.90;
+}
+.numbersgridpane > .button:pressed{
+    -fx-opacity: 0.5;
+}
 .numbersgridpane > .button {
     -fx-background-color: #7e7a7a;
     -fx-text-fill: white;
 }
-
+#enterButton:hover, #deleteButton:hover, #cancelButton:hover{
+    -fx-opacity: 0.90;
+}
+#enterButton:pressed, #deleteButton:pressed, #cancelButton:pressed{
+    -fx-opacity: 0.5;
+}
 
 

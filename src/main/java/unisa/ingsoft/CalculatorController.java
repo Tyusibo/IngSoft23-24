@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import unisa.ingsoft.ComplexNumber.ComplexNumber;
@@ -21,9 +22,13 @@ public class CalculatorController {
     private Label outputview;
     @FXML
     private Label stackview;
-
+    @FXML
+    private AnchorPane anchorpane;
     private Font originalFont;
-
+    @FXML
+    private Button variablesButtons;
+    @FXML
+    private Button numbersButton;
     private Calculator calculator;
 
     public void initialize() {
@@ -72,6 +77,10 @@ public class CalculatorController {
                 }else if (input.charAt(0) == '-' && Character.isLowerCase(input.charAt(1))){
                     ComplexNumber num = calculator.decreaseVariable(input.charAt(1));
                     outputview.setText(input.charAt(1)+"="+num.toString());
+                }else if(input.equals("white")){
+                    anchorpane.setStyle("-fx-background-color: white");
+                }else if(input.equals("black")){
+                    anchorpane.setStyle("-fx-background-color: black");
                 }else{
                     calculator.insert(input);
                     outputview.setText("");
@@ -100,11 +109,15 @@ public class CalculatorController {
     private void switchToVariables(ActionEvent e){
         numbersGridPane.setVisible(false);
         varGridPane.setVisible(true);
+        variablesButtons.setOpacity(0.5);
+        numbersButton.setOpacity(1.0); 
     }
     @FXML
     private void switchToNumbers(ActionEvent e){
         numbersGridPane.setVisible(true);
         varGridPane.setVisible(false);
+        numbersButton.setOpacity(0.5);
+        variablesButtons.setOpacity(1.0);
     }
     @FXML
     private void buttonHandler (ActionEvent e){

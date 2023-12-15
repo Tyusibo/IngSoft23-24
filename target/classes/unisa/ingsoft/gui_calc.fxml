@@ -11,17 +11,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" stylesheets="@./style.css" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unisa.ingsoft.CalculatorController">
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" stylesheets="@./style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unisa.ingsoft.CalculatorController">
    <children>
       <Pane layoutX="4.0" layoutY="91.0" prefHeight="308.0" prefWidth="399.0">
          <children>
             <HBox layoutX="5.0" layoutY="8.0" prefHeight="55.0" prefWidth="386.0" styleClass="calcFunctionBox">
                <children>
-                  <Button mnemonicParsing="false" onAction="#switchToNumbers" prefHeight="55.0" prefWidth="77.0" text="Numeri" />
-                  <Button mnemonicParsing="false" onAction="#switchToVariables" prefHeight="55.0" prefWidth="77.0" text="Variabili" />
-                  <Button mnemonicParsing="false" onAction="#cancelHandler" prefHeight="55.0" prefWidth="77.0" text="Cancel" />
-                  <Button mnemonicParsing="false" onAction="#deleteHandler" prefHeight="55.0" prefWidth="77.0" text="Delete" />
-                  <Button mnemonicParsing="false" onAction="#enterHandler" prefHeight="55.0" prefWidth="78.0" text="Enter" />
+                  <Button fx:id="numbersButton" mnemonicParsing="false" onAction="#switchToNumbers" prefHeight="55.0" prefWidth="77.0" text="Numeri" />
+                  <Button fx:id="variablesButtons" mnemonicParsing="false" onAction="#switchToVariables" prefHeight="55.0" prefWidth="77.0" text="Variabili" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelHandler" prefHeight="55.0" prefWidth="77.0" text="Cancel" />
+                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteHandler" prefHeight="55.0" prefWidth="77.0" text="Delete" />
+                  <Button fx:id="enterButton" mnemonicParsing="false" onAction="#enterHandler" prefHeight="55.0" prefWidth="78.0" text="Enter" />
                </children>
             </HBox>
             <VBox layoutX="314.0" layoutY="71.0" prefHeight="229.0" prefWidth="78.0" styleClass="stackFunctionBox">
