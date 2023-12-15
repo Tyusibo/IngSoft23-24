@@ -55,8 +55,17 @@ public class Calculator {
         ComplexNumber w, result;
         w = stack.pop();
         result = stack.pop().mol(w);
-        stack.push(result);
-        return result;
+        double newRe;
+        double newIm;
+        if(result.getRe()==-0){
+            newRe = 0;
+        } else newRe = result.getRe();
+        if(result.getIm()==-0){
+            newIm = 0; //impostare la parte immaginaria a 0 è necessario per non causare dipendenze, ma non è necessario nel contesto della calcolatrice
+        } else newIm = result.getIm();
+        ComplexNumber ret = new ComplexNumber(newRe, newIm);
+        stack.push(ret);
+        return ret;
     }
     public ComplexNumber divCalculator() throws LessThanTwoElementsException, ArithmeticException{
         if (stack.size()<2)
@@ -101,8 +110,13 @@ public class Calculator {
         if (stack.size()<1)
             throw new LessThanOneElementException();
         ComplexNumber result = stack.pop().conj();
-        stack.push(result);
-        return result;
+        double newIm;
+        if(result.getIm()==-0){
+            newIm = 0; //impostare la parte immaginaria a 0 è necessario per non causare dipendenze, ma non è necessario nel contesto della calcolatrice
+        } else newIm = result.getIm();
+        ComplexNumber ret = new ComplexNumber(result.getRe(), newIm);
+        stack.push(ret);
+        return ret;
     }
 
     public ComplexNumber saveOnStack(Character c) throws VariableNotInitializedException{
