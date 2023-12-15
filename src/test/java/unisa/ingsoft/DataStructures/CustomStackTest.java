@@ -91,6 +91,10 @@ double delta=0.001;
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.swap();
      });
+        assertEquals(1,instance.size());
+        ComplexNumber result=instance.pop();
+        assertEquals(1.1,result.getRe(), delta);
+        assertEquals(1.1,result.getIm(), delta); 
     }
                 
     @Test  //caso con 0 elementi
@@ -150,6 +154,10 @@ double delta=0.001;
         assertThrows(LessThanTwoElementsException.class, () -> {
             instance.over();
      }); 
+        assertEquals(1,instance.size());
+        ComplexNumber result=instance.pop();
+        assertEquals(1.1,result.getRe(), delta);
+        assertEquals(1.1,result.getIm(), delta);
     }
     
     @Test  //caso con 0 elementi

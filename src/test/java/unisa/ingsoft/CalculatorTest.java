@@ -221,6 +221,8 @@ double delta=0.001;
         //controllo che lo stack è rimasto invariato
         ComplexNumber[] result = instance.stackToArray();  
         assertEquals(2,result.length);
+        assertEquals(4.4,result[0].getRe(), delta); 
+        assertEquals(3.4,result[0].getIm(), delta);
     }   
        
     /**
