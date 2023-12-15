@@ -355,9 +355,12 @@ double delta=0.001;
         instance.insert("4.4+3.4j");
         instance.saveOnVariable(c);  //unico modo per inizializzare il valore della variabile
         ComplexNumber result = instance.saveOnStack(c);
-        assertTrue(instance.stackToArray().length==1);
+        ComplexNumber[] result2 = instance.stackToArray();
+        assertTrue(result2.length==1);
         assertEquals(4.4, result.getRe(), delta);
         assertEquals(3.4, result.getIm(), delta);
+        assertEquals(4.4, result2[0].getRe(), delta);
+        assertEquals(3.4, result2[0].getIm(), delta);
     }
     @Test  //variabile non inizializzata
     public void testSaveOnStack2() throws SyntaxException, LessThanOneElementException, VariableNotInitializedException {
