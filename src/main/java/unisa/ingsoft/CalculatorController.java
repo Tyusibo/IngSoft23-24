@@ -73,16 +73,16 @@ public class CalculatorController {
                 }else if (input.equals("+/-")){
                     ComplexNumber inv = calculator.invCalculator();
                     outputview.setText(inv.toString());
-                }else if (input.charAt(0) == '>' && Character.isLowerCase(input.charAt(1))) {
+                }else if (input.charAt(0) == '>' && Character.isLowerCase(input.charAt(1)) && input.length()==2) {
                     ComplexNumber num = calculator.saveOnVariable(input.charAt(1));
                     outputview.setText(input.charAt(1)+"="+num.toString());
-                }else if (input.charAt(0) == '<' && Character.isLowerCase(input.charAt(1))){
+                }else if (input.charAt(0) == '<' && Character.isLowerCase(input.charAt(1))&& input.length()==2){
                     ComplexNumber num = calculator.saveOnStack(input.charAt(1));
                     outputview.setText(input.charAt(1)+"=" + num);
-                }else if (input.charAt(0) == '+' && Character.isLowerCase(input.charAt(1))){
+                }else if (input.charAt(0) == '+' && Character.isLowerCase(input.charAt(1))&& input.length()==2){
                     ComplexNumber num = calculator.increaseVariable(input.charAt(1));
                     outputview.setText(input.charAt(1)+"="+num.toString());
-                }else if (input.charAt(0) == '-' && Character.isLowerCase(input.charAt(1))){
+                }else if (input.charAt(0) == '-' && Character.isLowerCase(input.charAt(1))&& input.length()==2){
                     ComplexNumber num = calculator.decreaseVariable(input.charAt(1));
                     outputview.setText(input.charAt(1)+"="+num.toString());
                 }else if(input.equals("white")){
