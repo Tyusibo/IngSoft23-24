@@ -56,7 +56,10 @@ public class ComplexNumber implements Operations<ComplexNumber> {
         if(a==0 && b==0)
             return this; //non è necessario creare un nuovo ComplexNumber
         if(b==0){
-            return new ComplexNumber(Math.sqrt(a),0);
+            if(a>0)
+                return new ComplexNumber(Math.sqrt(a),0);
+            return new ComplexNumber(0,Math.sqrt(-a));                     
+        
         }
         double modulo = Math.sqrt(a*a + b*b);
         double argomento = Math.atan2(b,a)/2.0;

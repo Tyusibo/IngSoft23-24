@@ -33,13 +33,16 @@ public class CalculatorController {
     private Button variablesButtons; //per mostrare il pulsante delle variabili come "premuto"
     @FXML
     private Button numbersButton; //per mostrare il pulsante dei numeri come "premuto"
+    private boolean flagException;  //per la pulizia della schermata dopo un'eccezione
+    private boolean flagResult;     //per la pulizia della schermata dopo un risultato
 
     public void initialize() {
         varGridPane.setVisible(false); // Imposta il setVisible a false all'avvio
         calculator = new Calculator();
         originalFont = outputview.getFont();
         numbersButton.setOpacity(0.5);
-
+        flagException=false;
+        flagResult=false;
     }
 
 
@@ -91,21 +94,27 @@ public class CalculatorController {
                     outputview.setText("");
                 }
                 showStackContent();
+                flagResult=true;
             }
         }catch(LessThanTwoElementsException ex){
             outputview.setFont(new Font(18));
             outputview.setText(ex.getMessage());
+            flagException=true;
         }catch(LessThanOneElementException ex){
             outputview.setFont(new Font(18));
             outputview.setText(ex.getMessage());
+            flagException=true;
         }catch(VariableNotInitializedException ex){
             outputview.setFont(new Font(18));
             outputview.setText(ex.getMessage());
+            flagException=true;
         }catch(SyntaxException ex){
             outputview.setText(ex.getMessage());
+            flagException=true;
         }catch(ArithmeticException ex){
             outputview.setFont(new Font(23));
             outputview.setText("Divisione per 0");
+            flagException=true;
         }
         
     }
@@ -128,7 +137,14 @@ public class CalculatorController {
     private void buttonHandler (ActionEvent e){
         String buttontxt = ((Button) e.getSource()).getText();
         outputview.setFont(originalFont);
-
+        if(flagResult==true){
+            outputview.setText("");
+            flagResult=false;
+        }
+        if(flagException==true){
+            outputview.setText("");
+            flagException=false;
+        }
         if(outputview.getText().equals("")){
             outputview.setText(buttontxt);
         }else{
@@ -163,6 +179,7 @@ public class CalculatorController {
         }catch(LessThanTwoElementsException ex){
             outputview.setFont(new Font(18));
             outputview.setText(ex.getMessage());
+            flagException=true;
         }
     }
     @FXML
@@ -173,6 +190,7 @@ public class CalculatorController {
         }catch(LessThanOneElementException ex){
             outputview.setFont(new Font(18));
             outputview.setText(ex.getMessage());
+            flagException=true;
         }
         
     }
@@ -184,6 +202,7 @@ public class CalculatorController {
         }catch(LessThanTwoElementsException ex){
             outputview.setFont(new Font(18));
             outputview.setText(ex.getMessage());
+            flagException=true;
         }
     }
     @FXML

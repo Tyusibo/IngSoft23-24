@@ -416,6 +416,13 @@ double delta=0.001;
         assertEquals(0, result.getRe(), delta);
         assertEquals(0, result.getIm(), delta);
     } 
+    @Test //radice di un numero reale negativo
+    public void testSqrt5() {
+        ComplexNumber instance = new ComplexNumber(-9,0);
+        ComplexNumber result = instance.sqrt();
+        assertEquals(0, result.getRe(), delta);
+        assertEquals(3, result.getIm(), delta);
+    }
     /**
      * Test of inv method, of class ComplexNumber.
      */
